@@ -1,0 +1,30 @@
+#!/usr/bin/node
+
+require("colors");
+var optimist = require("optimist");
+var argv = optimist
+  .usage("$0 [-h] -i <input>".yellow)
+  .option("h", {
+    alias: "help",
+    description: "Show usage"
+  })
+  .option("i", {
+    alias: "input",
+    description: "Input directory"
+  })
+  .boolean(["h"])
+  .string(["i"])
+  .argv;
+
+var prepare = require("./lib/prepare");
+var server = require("./lib/server");
+
+if (argv.help || !("input" in argv)) {
+  console.log(optimist.help());
+  process.exit();
+}
+
+var inputDir = argv.input;
+prepare(inputDir, function() {
+  server(inputDir);
+});

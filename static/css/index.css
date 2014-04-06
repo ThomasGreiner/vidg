@@ -1,0 +1,41 @@
+body {
+  text-align: center;
+}
+
+body[data-tag="keep"] {
+  background-color: #AFA;
+}
+
+body[data-tag="trash"] {
+  background-color: #FAA;
+}
+
+body[data-tag="keep"] button[data-action="keep"],
+body[data-tag="trash"] button[data-action="trash"] {
+  visibility: hidden;
+}
+
+button {
+  width: 100px;
+  height: 40px;
+  line-height: 30px !important;
+}
+
+h1 {
+  margin: 10px;
+  font-size: 20px;
+}
+
+img {
+  width: 500px;
+  margin: 10px;
+}
+
+.progress {
+  margin: 0px;
+  border-radius: 0px;
+}
+
+.progress-bar {
+  transition: width 0.2s linear;
+}
