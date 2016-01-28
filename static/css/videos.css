@@ -2,16 +2,32 @@ body {
   text-align: center;
 }
 
-body[data-status="keep"] {
+body[data-rating="5"] {
   background-color: #AFA;
 }
 
-body[data-status="trash"] {
+body[data-rating="4"] {
+  background-color: #BFB;
+}
+
+body[data-rating="3"] {
+  background-color: #CFC;
+}
+
+body[data-rating="2"] {
+  background-color: #DFD;
+}
+
+body[data-rating="1"] {
+  background-color: #EFE;
+}
+
+body[data-rating="-1"] {
   background-color: #FAA;
 }
 
-body[data-status="keep"] button[data-action="keep"],
-body[data-status="trash"] button[data-action="trash"] {
+body[data-rating="5"] button[data-action="rate-up"],
+body[data-rating="-1"] button[data-action="rate-down"] {
   visibility: hidden;
 }
 

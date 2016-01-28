@@ -4,7 +4,7 @@
 
 var currentFile = null;
 
-var postActions = ["keep", "trash", "view"];
+var postActions = ["rate-up", "rate-down", "view"];
 function request(action, params, callback) {
   var method = (postActions.indexOf(action) > -1) ? "POST" : "GET";
   var url = "/" + action;
@@ -40,7 +40,7 @@ function onFileData(status, file) {
   }
   document.getElementById("name").innerText = (success) ? normalizeFilename(file.name) : "No files";
   document.getElementById("image").src = (success) ? file.image : "";
-  document.body.dataset.status = (success) ? file.status : "";
+  document.body.dataset.rating = (success) ? file.rating : "";
 }
 
 function normalizeFilename(filename) {
@@ -69,11 +69,11 @@ function onClick(ev) {
 }
 
 var keymap = {
-  Down: "trash",
+  Down: "rate-down",
   Enter: "view",
   Left: "prev",
   Right: "next",
-  Up: "keep"
+  Up: "rate-up"
 };
 function onKeyPress(ev) {
   var action = keymap[ev.keyIdentifier];
