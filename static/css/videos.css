@@ -2,16 +2,16 @@ body {
   text-align: center;
 }
 
-body[data-tag="keep"] {
+body[data-status="keep"] {
   background-color: #AFA;
 }
 
-body[data-tag="trash"] {
+body[data-status="trash"] {
   background-color: #FAA;
 }
 
-body[data-tag="keep"] button[data-action="keep"],
-body[data-tag="trash"] button[data-action="trash"] {
+body[data-status="keep"] button[data-action="keep"],
+body[data-status="trash"] button[data-action="trash"] {
   visibility: hidden;
 }
 
@@ -26,7 +26,6 @@ h1 {
 }
 
 img {
-  width: 500px;
   margin: 10px;
 }
 
@@ -37,4 +36,14 @@ img {
 
 .progress-bar {
   transition: width 0.2s linear;
+}
+
+button[data-action="empty-trash"] {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  border-width: 0px;
+  border-left-width: 1px;
+  border-radius: 0px;
+  background-color: rgba(255, 255, 255, 0.9);
 }

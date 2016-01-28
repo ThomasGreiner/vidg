@@ -1,8 +1,10 @@
 #!/usr/bin/env node
 
+"use strict";
+
 require("colors");
-var optimist = require("optimist");
-var argv = optimist
+const optimist = require("optimist");
+const argv = optimist
   .usage("$0 [-h] -i <input>".yellow)
   .option("h", {
     alias: "help",
@@ -16,15 +18,16 @@ var argv = optimist
   .string(["i"])
   .argv;
 
-var prepare = require("./lib/prepare");
-var server = require("./lib/server");
+const MetaDataSync = require("./lib/prepare").MetaDataSync;
+const server = require("./lib/server");
 
 if (argv.help || !("input" in argv)) {
   console.log(optimist.help());
   process.exit();
 }
 
-var inputDir = argv.input;
-prepare(inputDir, function() {
-  server(inputDir);
-});
+const inputDir = argv.input;
+let meta = new MetaDataSync(inputDir);
+meta.sync()
+    .then(server.createServer)
+    .catch((err) => console.error(err.stack));

@@ -1,3 +1,7 @@
+/* jslint browser: true */
+
+"use strict";
+
 var currentFile = null;
 
 var postActions = ["keep", "trash", "view"];
@@ -36,7 +40,7 @@ function onFileData(status, file) {
   }
   document.getElementById("name").innerText = (success) ? normalizeFilename(file.name) : "No files";
   document.getElementById("image").src = (success) ? file.image : "";
-  document.body.dataset.tag = (success) ? file.tag : "";
+  document.body.dataset.status = (success) ? file.status : "";
 }
 
 function normalizeFilename(filename) {
@@ -55,9 +59,7 @@ function setProgress(id) {
 }
 
 function onAction(action) {
-  request(action, {
-    file: currentFile.name
-  }, onFileData);
+  request(action, {}, onFileData);
 }
 
 function onClick(ev) {
