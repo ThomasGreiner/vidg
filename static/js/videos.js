@@ -34,12 +34,9 @@ function onFileData(status, file) {
   currentFile = (success) ? file : null;
   document.querySelector("button[data-action='prev']").style.visibility = (file.stats.hasPrev) ? "visible" : "hidden";
   document.querySelector("button[data-action='next']").style.visibility = (file.stats.hasNext) ? "visible": "hidden";
-  if (success) {
-    setProgress("progress", file.stats.progress, file.stats.total);
-    setProgress("status", file.stats.keep, file.stats.trash, file.stats.total);
-  }
+  document.getElementById("status").src = (success) ? file.stats.statusImage : "";
   document.getElementById("name").innerText = (success) ? normalizeFilename(file.name) : "No files";
-  document.getElementById("image").src = (success) ? file.image : "";
+  document.getElementById("screenshot").src = (success) ? file.image : "";
   document.body.dataset.rating = (success) ? file.rating : "";
 }
 
@@ -47,15 +44,6 @@ function normalizeFilename(filename) {
   return filename
     .replace(/\..*$/, "")
     .replace(/[\-_]/g, " ");
-}
-
-function setProgress(id) {
-  var values = arguments;
-  var total = arguments[arguments.length - 1];
-  var bars = document.querySelectorAll("#" + id + " > .progress-bar");
-  for (var i = 0; i < bars.length; i++) {
-    bars[i].style.width = (values[i + 1] / total * 100) + "%";
-  }
 }
 
 function onAction(action) {
@@ -84,6 +72,6 @@ function onKeyPress(ev) {
 function onLoad() {
   document.body.addEventListener("click", onClick, true);
   window.addEventListener("keyup", onKeyPress, true);
-  request("first", null, onFileData);
+  request("current", {}, onFileData);
 }
 document.addEventListener("DOMContentLoaded", onLoad, false);

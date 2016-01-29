@@ -2,28 +2,32 @@ body {
   text-align: center;
 }
 
-body[data-rating="5"] {
-  background-color: #AFA;
+body[data-rating="5"] #screenshot {
+  box-shadow: 0px 0px 100px 50px #AFA;
 }
 
-body[data-rating="4"] {
-  background-color: #BFB;
+body[data-rating="4"] #screenshot {
+  box-shadow: 0px 0px 100px 50px #BFB;
 }
 
-body[data-rating="3"] {
-  background-color: #CFC;
+body[data-rating="3"] #screenshot {
+  box-shadow: 0px 0px 100px 50px #CFC;
 }
 
-body[data-rating="2"] {
-  background-color: #DFD;
+body[data-rating="2"] #screenshot {
+  box-shadow: 0px 0px 100px 50px #DFD;
 }
 
-body[data-rating="1"] {
-  background-color: #EFE;
+body[data-rating="1"] #screenshot {
+  box-shadow: 0px 0px 100px 50px #EFE;
 }
 
-body[data-rating="-1"] {
-  background-color: #FAA;
+body[data-rating="0"] #screenshot {
+  box-shadow: 0px 0px 100px 50px #AAA;
+}
+
+body[data-rating="-1"] #screenshot {
+  box-shadow: 0px 0px 100px 50px #FAA;
 }
 
 body[data-rating="5"] button[data-action="rate-up"],
@@ -41,17 +45,8 @@ h1 {
   font-size: 20px;
 }
 
-img {
+#screenshot {
   margin: 10px;
-}
-
-.progress {
-  margin: 0px;
-  border-radius: 0px;
-}
-
-.progress-bar {
-  transition: width 0.2s linear;
 }
 
 button[data-action="empty-trash"] {
@@ -60,6 +55,7 @@ button[data-action="empty-trash"] {
   right: 0px;
   border-width: 0px;
   border-left-width: 1px;
+  border-bottom-width: 1px;
   border-radius: 0px;
   background-color: rgba(255, 255, 255, 0.9);
 }
