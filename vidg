@@ -18,7 +18,7 @@ const argv = optimist
   .string(["i"])
   .argv;
 
-const MetaDataSync = require("./lib/prepare").MetaDataSync;
+const MetaDataSync = require("./lib/sync").MetaDataSync;
 const server = require("./lib/server");
 
 if (argv.help || !("input" in argv)) {
