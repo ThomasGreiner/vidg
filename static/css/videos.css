@@ -2,37 +2,39 @@ body {
   text-align: center;
 }
 
-body[data-rating="5"] #screenshot {
-  box-shadow: 0px 0px 100px 50px #AFA;
+body[data-rating="5"] {
+  background-color: #AFA;
 }
 
-body[data-rating="4"] #screenshot {
-  box-shadow: 0px 0px 100px 50px #BFB;
+body[data-rating="4"] {
+  background-color: #BFB;
 }
 
-body[data-rating="3"] #screenshot {
-  box-shadow: 0px 0px 100px 50px #CFC;
+body[data-rating="3"] {
+  background-color: #CFC;
 }
 
-body[data-rating="2"] #screenshot {
-  box-shadow: 0px 0px 100px 50px #DFD;
+body[data-rating="2"] {
+  background-color: #DFD;
 }
 
-body[data-rating="1"] #screenshot {
-  box-shadow: 0px 0px 100px 50px #EFE;
+body[data-rating="1"] {
+  background-color: #EFE;
 }
 
-body[data-rating="0"] #screenshot {
-  box-shadow: 0px 0px 100px 50px #AAA;
+body[data-rating="0"] {
+  background-color: #EFEFEF;
 }
 
-body[data-rating="-1"] #screenshot {
-  box-shadow: 0px 0px 100px 50px #FAA;
+body[data-rating="-1"] {
+  background-color: #FAA;
 }
 
+body[data-has-prev="false"] button[data-action="prev"],
+body[data-has-next="false"] button[data-action="next"],
 body[data-rating="5"] button[data-action="rate-up"],
 body[data-rating="-1"] button[data-action="rate-down"] {
-  visibility: hidden;
+  opacity: 0.2;
 }
 
 button {
@@ -45,8 +47,41 @@ h1 {
   font-size: 20px;
 }
 
+img {
+  border: 2px solid #FFF;
+  border-radius: 5px;
+}
+
+#name {
+  opacity: 0.6;
+}
+
+#status {
+  border-top: none;
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
+  vertical-align: top;
+}
+
 #screenshot {
-  margin: 10px;
+  margin: 20px;
+}
+
+#actions {
+  display: flex;
+  justify-content: center;
+}
+
+#actions button:not(:first-child) {
+  border-left: none;
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+}
+
+#actions button:not(:last-child) {
+  border-right: none;
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
 }
 
 button[data-action="empty-trash"] {
@@ -56,6 +91,8 @@ button[data-action="empty-trash"] {
   border-width: 0px;
   border-left-width: 1px;
   border-bottom-width: 1px;
-  border-radius: 0px;
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
   background-color: rgba(255, 255, 255, 0.9);
 }

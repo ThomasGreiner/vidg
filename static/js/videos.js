@@ -32,11 +32,11 @@ function request(action, params, callback) {
 function onFileData(status, file) {
   var success = (status == 200);
   currentFile = (success) ? file : null;
-  document.querySelector("button[data-action='prev']").style.visibility = (file.stats.hasPrev) ? "visible" : "hidden";
-  document.querySelector("button[data-action='next']").style.visibility = (file.stats.hasNext) ? "visible": "hidden";
   document.getElementById("status").src = (success) ? file.stats.statusImage : "";
   document.getElementById("name").innerText = (success) ? normalizeFilename(file.name) : "No files";
   document.getElementById("screenshot").src = (success) ? file.image : "";
+  document.body.dataset.hasPrev = (success) ? file.stats.hasPrev : false;
+  document.body.dataset.hasNext = (success) ? file.stats.hasNext : false;
   document.body.dataset.rating = (success) ? file.rating : "";
 }
 
