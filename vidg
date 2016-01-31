@@ -5,29 +5,41 @@
 require("colors");
 const optimist = require("optimist");
 const argv = optimist
-  .usage("$0 [-h] -i <input>".yellow)
-  .option("h", {
-    alias: "help",
-    description: "Show usage"
-  })
-  .option("i", {
-    alias: "input",
-    description: "Input directory"
-  })
-  .boolean(["h"])
-  .string(["i"])
-  .argv;
+    .usage("$0 [-h][-m][-s] <input>".yellow)
+    .option("h", {
+      alias: "help",
+      description: "Show usage"
+    })
+    .option("m", {
+      alias: "meta",
+      description: "Update meta data"
+    })
+    .option("s", {
+      alias: "screenshot",
+      description: "Create screenshots"
+    })
+    .boolean(["h", "m", "s"])
+    .check((argv) => {
+      if (argv.help)
+        throw "";
+      
+      if (argv._.length === 0)
+        throw "No input directory specified";
+    })
+    .argv;
 
 const MetaDataSync = require("./lib/sync").MetaDataSync;
 const server = require("./lib/server");
 
-if (argv.help || !("input" in argv)) {
-  console.log(optimist.help());
-  process.exit();
+const inputDir = argv._[0];
+let metaSync = new MetaDataSync(inputDir);
+let filenames = metaSync.sync();
+if (argv.meta) {
+  filenames = filenames.then((filenames) => metaSync.syncMetaData(filenames));
 }
-
-const inputDir = argv.input;
-let meta = new MetaDataSync(inputDir);
-meta.sync()
-    .then(server.createServer)
-    .catch((err) => console.error(err.stack));
+if (argv.screenshot) {
+  filenames = filenames.then((filenames) => metaSync.createScreenshots(filenames));
+}
+filenames
+    .then(() => server.createServer(inputDir, metaSync))
+    .catch((err) => console.error(`Bootstrap error: ${err.stack}`.red));

@@ -3,16 +3,26 @@ vidg - the hot-or-not for stored videos
 
 ## What it does
 
-1. Creates index and prepares screenshots of all videos in file `.vidg.json`
+1. Creates index and prepares screenshots of all videos in file `.vidg.nedb`
 2. Creates local server and launches browser
-3. Lets you categorize videos as either "keep" or "trash"
+3. Let's you rate videos from -1 (trash) to 5 (keep)
+
+## Starting server
+
+```
+vidg [-h][-m][-s] <input>
+
+-h Show usage
+-m Update meta data
+-s Create screenshots
+```
 
 ## Keyboard shortcuts
 
 - **left:** go to previous video
 - **right:** go to next video
-- **up:** keep this video
-- **down:** move this video to trash
+- **up:** increase rating of video
+- **down:** decrease rating of video
 - **enter:** open video in video player
 
 ## Requirements
