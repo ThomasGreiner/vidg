@@ -15,10 +15,14 @@ const argv = optimist
       description: "Update meta data"
     })
     .option("s", {
-      alias: "screenshot",
-      description: "Create screenshots"
+      alias: "server",
+      description: "Start server"
     })
-    .boolean(["h", "m", "s"])
+    .option("t", {
+      alias: "thumbnail",
+      description: "Create thumbnails"
+    })
+    .boolean(["h", "m", "s", "t"])
     .check((argv) => {
       if (argv.help)
         throw "";
@@ -37,9 +41,10 @@ let filenames = metaSync.sync();
 if (argv.meta) {
   filenames = filenames.then((filenames) => metaSync.syncMetaData(filenames));
 }
-if (argv.screenshot) {
+if (argv.thumbnail) {
   filenames = filenames.then((filenames) => metaSync.createScreenshots(filenames));
 }
-filenames
-    .then(() => server.createServer(inputDir, metaSync))
-    .catch((err) => console.error(`Bootstrap error: ${err.stack}`.red));
+if (argv.server) {
+  filenames = filenames.then(() => server.createServer(inputDir, metaSync));
+}
+filenames.catch((err) => console.error(`Bootstrap error: ${err.stack}`.red));

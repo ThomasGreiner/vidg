@@ -10,11 +10,12 @@ vidg - the hot-or-not for stored videos
 ## Starting server
 
 ```
-vidg [-h][-m][-s] <input>
+vidg [-h][-m][-s][-t] <input>
 
 -h Show usage
 -m Update meta data
--s Create screenshots
+-s Start server
+-t Create thumbnails
 ```
 
 ## Keyboard shortcuts
