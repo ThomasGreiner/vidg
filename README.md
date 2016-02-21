@@ -35,13 +35,12 @@ vidg [-h][-m][-s] <input>
   sudo n stable
   ```
 
-- fluent-ffmpeg
+- ffmpeg / ffprobe
 
   ```
   sudo apt-add-repository ppa:jon-severinsson/ffmpeg
   sudo apt-get update
   sudo apt-get install ffmpeg
-  npm install fluent-ffmpeg
   ```
 
 - node-canvas:
