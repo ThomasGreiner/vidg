@@ -2,7 +2,7 @@
 
 "use strict";
 
-require("colors");
+require("./lib/utils");
 const optimist = require("optimist");
 const argv = optimist
     .usage("$0 [-h][-m][-s] <input>".yellow)
@@ -37,14 +37,8 @@ const server = require("./lib/server");
 
 const inputDir = argv._[0];
 let metaSync = new MetaDataSync(inputDir);
-let filenames = metaSync.sync();
-if (argv.meta) {
-  filenames = filenames.then((filenames) => metaSync.syncMetaData(filenames));
-}
-if (argv.thumbnail) {
-  filenames = filenames.then((filenames) => metaSync.createScreenshots(filenames));
-}
+let filenames = metaSync.sync({meta: argv.meta, thumbnail: argv.thumbnail});
 if (argv.server) {
   filenames = filenames.then(() => server.createServer(inputDir, metaSync));
 }
-filenames.catch((err) => console.error(`Bootstrap error: ${err.stack}`.red));
+filenames.catch((err) => console.error(`Bootstrap error: ${err.stack}`));

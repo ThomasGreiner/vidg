@@ -33,15 +33,16 @@ function onFileData(status, file) {
   var success = (status == 200);
   currentFile = (success) ? file : null;
   document.getElementById("status").src = (success) ? file.stats.statusImage : "";
-  document.getElementById("name").innerText = (success) ? normalizeFilename(file.name) : "No files";
+  document.getElementById("name").innerText = (success) ? normalizeFilepath(file.path) : "No files";
   document.getElementById("screenshot").src = (success) ? file.image : "";
   document.body.dataset.hasPrev = (success) ? file.stats.hasPrev : false;
   document.body.dataset.hasNext = (success) ? file.stats.hasNext : false;
   document.body.dataset.rating = (success) ? file.rating : "";
 }
 
-function normalizeFilename(filename) {
-  return filename
+function normalizeFilepath(filepath) {
+  return filepath
+    .replace(/^.*\//, "")
     .replace(/\..*$/, "")
     .replace(/[\-_]/g, " ");
 }
