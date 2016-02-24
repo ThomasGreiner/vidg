@@ -2,10 +2,13 @@
 
 "use strict";
 
-require("./lib/utils");
 const optimist = require("optimist");
+
+require("./lib/utils");
+const MetaDataSync = require("./lib/sync").MetaDataSync;
+
 const argv = optimist
-    .usage("$0 [-h][-m][-s] <input>".yellow)
+    .usage("$0 [-h][-m][-s][-t] <input>".yellow)
     .option("h", {
       alias: "help",
       description: "Show usage"
@@ -32,13 +35,11 @@ const argv = optimist
     })
     .argv;
 
-const MetaDataSync = require("./lib/sync").MetaDataSync;
-const server = require("./lib/server");
-
 const inputDir = argv._[0];
 let metaSync = new MetaDataSync(inputDir);
-let filenames = metaSync.sync({meta: argv.meta, thumbnail: argv.thumbnail});
+let sync = metaSync.sync({meta: argv.meta, thumbnail: argv.thumbnail});
 if (argv.server) {
-  filenames = filenames.then(() => server.createServer(inputDir, metaSync));
+  const server = require("./lib/server");
+  sync = sync.then(() => server.createServer(inputDir, metaSync));
 }
-filenames.catch((err) => console.error(`Bootstrap error: ${err.stack}`));
+sync.catch((err) => console.error(`Bootstrap error: ${err.stack}`));
