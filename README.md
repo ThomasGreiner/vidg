@@ -31,30 +31,22 @@ vidg [-h][-m][-p][-s] <input>
 - Node.js (4.0+)
 
   ```
-  sudo apt-get install npm
-  sudo npm install n
-  sudo n stable
+  apt-get install npm
+  npm install -g n
+  n stable
+  npm install
   ```
 
 - ffmpeg / ffprobe
 
   ```
-  sudo apt-add-repository ppa:jon-severinsson/ffmpeg
-  sudo apt-get update
-  sudo apt-get install ffmpeg
+  apt-add-repository ppa:jon-severinsson/ffmpeg
+  apt-get update
+  apt-get install ffmpeg
   ```
 
 - node-canvas:
 
   ```
-  sudo apt-get install libcairo2-dev libjpeg8-dev libpango1.0-dev libgif-dev
-  npm install canvas
+  apt-get install libcairo2-dev libjpeg8-dev libpango1.0-dev libgif-dev
   ```
-
-- Nedb
-
-  `npm install nedb`
-
-- trash
-
-  `npm install trash`
