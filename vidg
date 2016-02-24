@@ -8,7 +8,7 @@ require("./lib/utils");
 const MetaDataSync = require("./lib/sync").MetaDataSync;
 
 const argv = optimist
-    .usage("$0 [-h][-m][-s][-t] <input>".yellow)
+    .usage("$0 [-h][-m][-p][-s] <input>".yellow)
     .option("h", {
       alias: "help",
       description: "Show usage"
@@ -17,15 +17,15 @@ const argv = optimist
       alias: "meta",
       description: "Update meta data"
     })
+    .option("p", {
+      alias: "preview",
+      description: "Create previews"
+    })
     .option("s", {
       alias: "server",
       description: "Start server"
     })
-    .option("t", {
-      alias: "thumbnail",
-      description: "Create thumbnails"
-    })
-    .boolean(["h", "m", "s", "t"])
+    .boolean(["h", "m", "p", "s"])
     .check((argv) => {
       if (argv.help)
         throw "";
@@ -37,7 +37,7 @@ const argv = optimist
 
 const inputDir = argv._[0];
 let metaSync = new MetaDataSync(inputDir);
-let sync = metaSync.sync({meta: argv.meta, thumbnail: argv.thumbnail});
+let sync = metaSync.sync({meta: argv.meta, preview: argv.preview});
 if (argv.server) {
   const server = require("./lib/server");
   sync = sync.then(() => server.createServer(inputDir, metaSync));

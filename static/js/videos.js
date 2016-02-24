@@ -34,7 +34,7 @@ function onFileData(status, file) {
   currentFile = (success) ? file : null;
   document.getElementById("status").src = (success) ? file.stats.statusImage : "";
   document.getElementById("name").innerText = (success) ? normalizeFilepath(file.path) : "No files";
-  document.getElementById("screenshot").src = (success) ? file.image : "";
+  document.getElementById("preview").src = (success) ? file.preview : "";
   document.body.dataset.hasPrev = (success) ? file.stats.hasPrev : false;
   document.body.dataset.hasNext = (success) ? file.stats.hasNext : false;
   document.body.dataset.rating = (success) ? file.rating : "";
