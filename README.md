@@ -3,7 +3,7 @@ vidg - the hot-or-not for stored videos
 
 ## What it does
 
-1. Creates index and prepares preview images of all videos in file `.vidg.nedb`
+1. Creates index and prepares preview images of all videos in file `.vidg.sqlite`
 2. Creates local server and launches browser
 3. Let's you rate videos from -1 (trash) to 5 (keep)
 
@@ -49,4 +49,12 @@ vidg [-h][-m][-p][-s] <input>
 
   ```
   apt-get install libcairo2-dev libjpeg8-dev libpango1.0-dev libgif-dev
+  ```
+
+### Optional
+
+- Inspect database on the command line using SQLite3
+
+  ```
+  apt-get install sqlite3
   ```
