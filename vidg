@@ -5,6 +5,7 @@
 const optimist = require("optimist");
 
 require("./lib/utils");
+const database = require("./lib/db");
 const MetaDataSync = require("./lib/sync").MetaDataSync;
 
 const argv = optimist
@@ -34,12 +35,17 @@ const argv = optimist
         throw "No input directory specified";
     })
     .argv;
-
 const inputDir = argv._[0];
-let metaSync = new MetaDataSync(inputDir);
-let sync = metaSync.sync({meta: argv.meta, preview: argv.preview});
+
+let db = database.open(inputDir);
+let metaSync = new MetaDataSync(db);
+let result = metaSync.sync({
+  inputDir,
+  meta: argv.meta,
+  preview: argv.preview
+});
 if (argv.server) {
   const server = require("./lib/server");
-  sync = sync.then(() => server.createServer(metaSync));
+  result = result.then(() => server.createServer(db));
 }
-sync.catch((err) => console.error(`Bootstrap error: ${err.stack}`));
+result.catch((err) => console.error(`Bootstrap error: ${err.stack}`));
