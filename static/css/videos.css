@@ -75,6 +75,14 @@ img {
   border-radius: 5px;
 }
 
+#sidebar {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  margin: 0px;
+  padding: 10px;
+}
+
 #name {
   opacity: 0.6;
 }
@@ -105,17 +113,4 @@ img {
   border-right: none;
   border-top-right-radius: 0px;
   border-bottom-right-radius: 0px;
-}
-
-button[data-action="empty-trash"] {
-  position: absolute;
-  top: 0px;
-  right: 0px;
-  border-width: 0px;
-  border-left-width: 1px;
-  border-bottom-width: 1px;
-  border-top-left-radius: 0px;
-  border-top-right-radius: 0px;
-  border-bottom-right-radius: 0px;
-  background-color: rgba(255, 255, 255, 0.9);
 }
