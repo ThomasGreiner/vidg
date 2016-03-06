@@ -48,26 +48,30 @@ function normalizeFilepath(filepath) {
 }
 
 function onAction(action) {
+  if (!action)
+    return;
+  
   request(action, {}, onFileData);
 }
 
 function onClick(ev) {
-  var action = ev.target.dataset.action;
-  if (action)
-    onAction(action);
+  onAction(ev.target.dataset.action);
 }
 
 var keymap = {
-  Down: "rate-down",
-  Enter: "view",
-  Left: "prev",
-  Right: "next",
-  Up: "rate-up"
+  "Down": "rate-down",
+  "Enter": "view",
+  "Left": "prev",
+  "Right": "next",
+  "Up": "rate-up",
+  "CTRL+Right": "next-unrated"
 };
 function onKeyPress(ev) {
-  var action = keymap[ev.keyIdentifier];
-  if (action)
-    onAction(action);
+  var key = ev.keyIdentifier;
+  if (ev.ctrlKey) {
+    key = `CTRL+${key}`;
+  }
+  onAction(keymap[key]);
 }
 
 function onLoad() {
