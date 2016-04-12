@@ -22,6 +22,7 @@ vidg [-h][-m][-p][-s] <input>
 
 - **left:** go to previous video
 - **right:** go to next video
+- **CTRL + right:** go to next unrated video
 - **up:** increase rating of video
 - **down:** decrease rating of video
 - **enter:** open video in video player
