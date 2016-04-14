@@ -76,14 +76,9 @@ function onKeyPress(ev) {
   onAction(keymap[key]);
 }
 
-function onConnect(ev) {
-  window.close();
-}
-
 function onLoad() {
   document.body.addEventListener("click", onClick, true);
   window.addEventListener("keyup", onKeyPress, true);
   request("current", {}, onFileData);
-  request("connect", {}, onConnect);
 }
 document.addEventListener("DOMContentLoaded", onLoad, false);
