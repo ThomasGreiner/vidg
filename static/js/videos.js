@@ -2,8 +2,6 @@
 
 "use strict";
 
-var currentFile = null;
-
 var postActions = ["rate-up", "rate-down", "view"];
 function request(action, params, callback) {
   var method = (postActions.indexOf(action) > -1) ? "POST" : "GET";
@@ -30,22 +28,25 @@ function request(action, params, callback) {
 }
 
 function onFileData(status, file) {
-  var success = (status == 200);
-  currentFile = (success) ? file : null;
-  document.getElementById("status").src = (success) ? file.stats.statusImage : "";
-  document.getElementById("distribution").src = (success) ? file.stats.distributionImage : "";
-  document.getElementById("name").innerText = (success) ? normalizeFilepath(file.path) : "No files";
-  document.getElementById("preview").src = (success) ? file.preview : "";
-  document.body.dataset.hasPrev = (success) ? file.stats.hasPrev : false;
-  document.body.dataset.hasNext = (success) ? file.stats.hasNext : false;
-  document.body.dataset.rating = (success) ? file.rating : "";
-}
-
-function normalizeFilepath(filepath) {
-  return filepath
-    .replace(/^.*\//, "")
-    .replace(/\..*$/, "")
-    .replace(/[\-_]/g, " ");
+  if (status != 200)
+    return;
+  
+  var fileparts = file.path.split("/").slice(1);
+  var path = document.getElementById("path");
+  path.textContent = "";
+  while (fileparts.length > 1) {
+    var part = document.createElement("button");
+    part.textContent = fileparts.shift();
+    path.appendChild(part);
+  }
+  
+  document.getElementById("distribution").src = file.stats.distributionImage;
+  document.getElementById("name").textContent = fileparts.pop();
+  document.getElementById("preview").src = file.preview;
+  document.getElementById("status").src = file.stats.statusImage;
+  document.body.dataset.hasPrev = file.stats.hasPrev;
+  document.body.dataset.hasNext = file.stats.hasNext;
+  document.body.dataset.rating = file.rating;
 }
 
 function onAction(action) {

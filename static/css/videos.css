@@ -3,11 +3,115 @@ body {
   background-color: #EFEFEF;
 }
 
+button {
+  width: 100px;
+  height: 40px;
+}
+
+h1 {
+  margin: 10px;
+  font-size: 20px;
+}
+
+img {
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px 2px #CCC;
+}
+
+/* sidebar */
+
+#sidebar {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  margin: 0px;
+  padding: 0px;
+}
+
+#sidebar > li {
+  margin: 0px;
+  padding: 10px;
+  list-style: none;
+}
+
+#distribution {
+  border-radius: 50px;
+}
+
+/* header */
+
+header {
+  width: 1000px;
+  margin: auto;
+  text-align: left;
+  color: #888;
+}
+
+header #name,
+header #rating {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+#status {
+  margin-bottom: 10px;
+  border-top: none;
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
+  vertical-align: top;
+}
+
+#name {
+  font-size: 16px;
+}
+
+#name button {
+  width: auto;
+  padding: 0px 10px;
+  border: 1px solid transparent;
+  border-radius: 5px;
+  font-weight: normal;
+  background-color: transparent;
+}
+
+#name button:hover {
+  border: 1px solid #CCC;
+  background-color: #FFF;
+}
+
+#path button {
+  width: auto;
+  height: auto;
+  padding: 5px 20px;
+  border: 1px solid transparent;
+  border-left-width: 0px;
+  border-right-color: #CCC;
+  background-color: transparent;
+}
+
+#path button:first-child {
+  border-left-width: 1px;
+}
+
+#path button:last-child {
+  border-right-color: transparent;
+}
+
+#path button:hover {
+  border-color: #CCC;
+  background-color: #FFF;
+}
+
+#rating {
+  display: inline-block;
+}
+
 .rating {
   display: inline-block;
   width: 20px;
   height: 20px;
   border-radius: 10px;
+  vertical-align: middle;
   background-color: #AAA;
 }
 
@@ -60,49 +164,7 @@ body[data-rating="-1"] button[data-action="rate-down"] {
   opacity: 0.2;
 }
 
-button {
-  width: 100px;
-  height: 40px;
-}
-
-h1 {
-  margin: 10px;
-  font-size: 20px;
-}
-
-img {
-  border-radius: 5px;
-  box-shadow: 0px 0px 10px 2px #CCC;
-}
-
-#sidebar {
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  margin: 0px;
-  padding: 0px;
-}
-
-#sidebar > li {
-  margin: 0px;
-  padding: 10px;
-  list-style: none;
-}
-
-#distribution {
-  border-radius: 50px;
-}
-
-#name {
-  opacity: 0.6;
-}
-
-#status {
-  border-top: none;
-  border-top-left-radius: 0px;
-  border-top-right-radius: 0px;
-  vertical-align: top;
-}
+/* content */
 
 #preview {
   margin: 20px;
