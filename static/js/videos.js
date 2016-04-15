@@ -2,7 +2,7 @@
 
 "use strict";
 
-var postActions = ["rate-up", "rate-down", "view"];
+var postActions = ["empty-trash", "rate-up", "rate-down", "view"];
 function request(action, params, callback) {
   var method = (postActions.indexOf(action) > -1) ? "POST" : "GET";
   var url = "/" + action;
