@@ -1,4 +1,5 @@
 /* jslint browser: true */
+/* global $, registerKeys, request */
 
 "use strict";
 
@@ -23,36 +24,25 @@ function onFileData(status, file) {
   document.body.dataset.rating = file.rating;
 }
 
-function onAction(action) {
+function onClick(ev) {
+  var action = ev.target.dataset.action;
   if (!action)
     return;
   
   request(action, {}, onFileData);
 }
 
-function onClick(ev) {
-  onAction(ev.target.dataset.action);
-}
-
-var keymap = {
+registerKeys({
   "Down": "rate-down",
   "Enter": "view",
   "Left": "prev",
   "Right": "next",
   "Up": "rate-up",
   "CTRL+Right": "next-unrated"
-};
-function onKeyPress(ev) {
-  var key = ev.keyIdentifier;
-  if (ev.ctrlKey) {
-    key = `CTRL+${key}`;
-  }
-  onAction(keymap[key]);
-}
+}, onFileData);
 
 function onLoad() {
   document.body.addEventListener("click", onClick, true);
-  window.addEventListener("keyup", onKeyPress, true);
   request("current", {}, onFileData);
 }
 document.addEventListener("DOMContentLoaded", onLoad, false);

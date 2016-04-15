@@ -40,3 +40,18 @@ function request(action, params, callback) {
   }, false);
   xhr.send(param);
 }
+
+function registerKeys(keyMap, onData) {
+  window.addEventListener("keyup", function(ev) {
+    var key = ev.keyIdentifier;
+    if (ev.ctrlKey) {
+      key = `CTRL+${key}`;
+    }
+    
+    var action = keyMap[key];
+    if (!action)
+      return;
+    
+    request(action, {}, onData);
+  }, true);
+}
