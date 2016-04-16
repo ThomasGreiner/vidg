@@ -1,0 +1,26 @@
+img {
+  margin-right: 10px;
+}
+
+img, .meta {
+  display: inline-block;
+  width: 500px;
+  height: 225px;
+  vertical-align: top;
+}
+
+.file {
+  margin: 10px;
+}
+
+.meta {
+  text-align: left;
+}
+
+.positive {
+  color: green;
+}
+
+.negative {
+  color: red;
+}

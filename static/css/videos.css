@@ -149,20 +149,3 @@ body[data-rating="-1"] button[data-action="rate-down"] {
 #preview {
   margin: 20px;
 }
-
-#actions {
-  display: flex;
-  justify-content: center;
-}
-
-#actions button:not(:first-child) {
-  border-left: none;
-  border-top-left-radius: 0px;
-  border-bottom-left-radius: 0px;
-}
-
-#actions button:not(:last-child) {
-  border-right: none;
-  border-top-right-radius: 0px;
-  border-bottom-right-radius: 0px;
-}
