@@ -1,0 +1,38 @@
+body {
+  text-align: center;
+  background-color: #EFEFEF;
+}
+
+button {
+  width: 100px;
+  height: 40px;
+}
+
+h1 {
+  margin: 10px;
+  font-size: 20px;
+}
+
+img {
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px 2px #CCC;
+}
+
+/* content */
+
+#actions {
+  display: flex;
+  justify-content: center;
+}
+
+#actions button:not(:first-child) {
+  border-left: none;
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+}
+
+#actions button:not(:last-child) {
+  border-right: none;
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+}
