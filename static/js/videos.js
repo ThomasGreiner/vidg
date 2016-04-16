@@ -1,5 +1,5 @@
 /* jslint browser: true */
-/* global $, registerKeys, request */
+/* global $, registerActions, request */
 
 "use strict";
 
@@ -24,15 +24,7 @@ function onFileData(status, file) {
   document.body.dataset.rating = file.rating;
 }
 
-function onClick(ev) {
-  var action = ev.target.dataset.action;
-  if (!action)
-    return;
-  
-  request(action, {}, onFileData);
-}
-
-registerKeys({
+registerActions("current", {
   "Down": "rate-down",
   "Enter": "view",
   "Left": "prev",
@@ -40,9 +32,3 @@ registerKeys({
   "Up": "rate-up",
   "CTRL+Right": "next-unrated"
 }, onFileData);
-
-function onLoad() {
-  document.body.addEventListener("click", onClick, true);
-  request("current", {}, onFileData);
-}
-document.addEventListener("DOMContentLoaded", onLoad, false);

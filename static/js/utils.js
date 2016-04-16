@@ -18,6 +18,9 @@ HTMLElement.prototype.create = function (tagName) {
 
 var postActions = ["empty-trash", "rate-down", "rate-up", "view"];
 function request(action, params, callback) {
+  if (!action)
+    return;
+  
   var method = (postActions.indexOf(action) > -1) ? "POST" : "GET";
   var url = "/" + action;
   var param = [];
@@ -41,17 +44,19 @@ function request(action, params, callback) {
   xhr.send(param);
 }
 
-function registerKeys(keyMap, onData) {
+function registerActions(startAction, keyMap, onData) {
   window.addEventListener("keyup", function(ev) {
     var key = ev.keyIdentifier;
     if (ev.ctrlKey) {
       key = `CTRL+${key}`;
     }
     
-    var action = keyMap[key];
-    if (!action)
-      return;
-    
-    request(action, {}, onData);
+    request(keyMap[key], {}, onData);
   }, true);
+  
+  document.addEventListener("click", function(ev) {
+    request(ev.target.dataset.action, {}, onData);
+  }, false);
+  
+  request(startAction, {}, onData);
 }
