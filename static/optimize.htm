@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>vidg - optimize</title>
+  <link rel="stylesheet" type="text/css" href="/static/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="/static/css/common.css">
+  <link rel="stylesheet" type="text/css" href="/static/css/optimize.css">
+  <script src="/static/js/common.js"></script>
+  <script src="/static/js/optimize.js"></script>
+</head>
+<body>
+
+<ul id="sidebar">
+  <li>
+    <img id="distribution">
+  </li>
+  <li>
+    <button
+      class="btn btn-danger glyphicon glyphicon-trash"
+      data-action="empty-trash">
+    </button>
+  </li>
+</ul>
+
+<header>
+  <img id="status">
+</header>
+
+<div id="optimization">
+  <div>Bitrate: <span class="bitrate">0</span>kb/s</div>
+</div>
+
+<div id="file"></div>
+
+<div id="actions">
+  <button
+    class="btn btn-default glyphicon glyphicon-chevron-left"
+    data-action="optimize/prev">
+  </button>
+  <button
+    class="btn btn-default glyphicon glyphicon-chevron-right"
+    data-action="optimize/next">
+  </button>
+</div>
+
+</body>
+</html>
