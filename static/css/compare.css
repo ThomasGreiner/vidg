@@ -1,12 +1,12 @@
-img {
-  margin-right: 10px;
-}
-
-img, .meta {
+.preview, .meta {
   display: inline-block;
   width: 500px;
   height: 225px;
   vertical-align: top;
+}
+
+.preview {
+  margin-right: 10px;
 }
 
 .file {

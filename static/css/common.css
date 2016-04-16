@@ -18,6 +18,43 @@ img {
   box-shadow: 0px 0px 10px 2px #CCC;
 }
 
+/* sidebar */
+
+#sidebar {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  margin: 0px;
+  padding: 0px;
+}
+
+#sidebar > li {
+  margin: 0px;
+  padding: 10px;
+  list-style: none;
+}
+
+#distribution {
+  border-radius: 50px;
+}
+
+/* header */
+
+header {
+  width: 1000px;
+  margin: auto;
+  text-align: left;
+  color: #888;
+}
+
+#status {
+  margin-bottom: 10px;
+  border-top: none;
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
+  vertical-align: top;
+}
+
 /* content */
 
 #actions {
