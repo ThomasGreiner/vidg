@@ -10,13 +10,12 @@ vidg - the hot-or-not for stored videos
 ## Starting server
 
 ```
-vidg [-h][-m][-p][-s][-t] <input>
+vidg [-h][-s][-t][-u] <input>
 
 -h Show usage
--m Update meta data
--p Create previews
 -s Start server
 -t Play top rated media
+-u Update meta data and previews
 ```
 
 ## Keyboard shortcuts
