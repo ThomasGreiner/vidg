@@ -10,7 +10,7 @@ const database = require("./lib/db");
 const MetaDataSync = require("./lib/sync").MetaDataSync;
 
 const argv = optimist
-    .usage("$0 [-h][-s][-t][-u] <input>".yellow)
+    .usage("$0 [-h][-s][-t][-u|-U] <input>".yellow)
     .option("h", {
       alias: "help",
       description: "Show usage"
@@ -27,7 +27,11 @@ const argv = optimist
       alias: "update",
       description: "Update meta data and previews"
     })
-    .boolean(["h", "s", "t", "u"])
+    .option("U", {
+      alias: "forceupdate",
+      description: "Force update meta data and previews (overwrite existing)"
+    })
+    .boolean(["h", "s", "t", "u", "U"])
     .check((argv) => {
       if (argv.help)
         throw "";
@@ -41,8 +45,9 @@ const inputDir = argv._[0];
 let db = database.open(inputDir);
 let metaSync = new MetaDataSync(db);
 let result = metaSync.sync({
+  forceUpdate: argv.forceupdate,
   inputDir,
-  update: argv.update
+  update: argv.update,
 });
 if (argv.server || argv.toprated) {
   const server = require("./lib/server");

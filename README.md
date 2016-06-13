@@ -10,12 +10,13 @@ vidg - the hot-or-not for stored videos
 ## Starting server
 
 ```
-vidg [-h][-s][-t][-u] <input>
+vidg [-h][-s][-t][-u|-U] <input>
 
 -h Show usage
 -s Start server
 -t Play top rated media
 -u Update meta data and previews
+-U Force update meta data and previews (overwrite existing)
 ```
 
 ## Keyboard shortcuts
@@ -29,7 +30,7 @@ vidg [-h][-s][-t][-u] <input>
 
 ## Requirements
 
-- Node.js (4.0+)
+- Node.js (6.0+)
 
   ```
   apt-get install npm
