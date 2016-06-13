@@ -47,7 +47,7 @@ let metaSync = new MetaDataSync(db);
 let result = metaSync.sync({
   forceUpdate: argv.forceupdate,
   inputDir,
-  update: argv.update,
+  update: argv.update
 });
 if (argv.server || argv.toprated) {
   const server = require("./lib/server");
