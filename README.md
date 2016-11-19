@@ -23,6 +23,7 @@ vidg [-h][-s][-t][-u|-U] <input>
 
 - **left:** go to previous video
 - **right:** go to next video
+- **CTRL + left:** go to previous unrated video
 - **CTRL + right:** go to next unrated video
 - **up:** increase rating of video
 - **down:** decrease rating of video
