@@ -17,7 +17,7 @@ HTMLElement.prototype.create = function (tagName) {
 };
 
 var postActions = ["empty-trash", "rate-down", "rate-up", "view"];
-function request(action, params, callback) {
+function request(action, params) {
   if (!action)
     return;
   
@@ -38,25 +38,27 @@ function request(action, params, callback) {
   xhr.open(method, url, true);
   xhr.addEventListener("readystatechange", function(ev) {
     if (xhr.readyState == 4) {
-      callback(xhr.status, xhr.responseText && JSON.parse(xhr.responseText));
+      var evName = (xhr.status == 200) ? "actionsuccess" : "actionerror";
+      var data = xhr.responseText && JSON.parse(xhr.responseText);
+      document.dispatchEvent(new CustomEvent(evName, {detail: data}));
     }
   }, false);
   xhr.send(param);
 }
 
-function registerActions(startAction, keyMap, onData) {
+function registerActions(startAction, keyMap) {
   window.addEventListener("keyup", function(ev) {
     var key = ev.key;
     if (ev.ctrlKey) {
       key = `CTRL+${key}`;
     }
     
-    request(keyMap[key], {}, onData);
+    request(keyMap[key], {});
   }, true);
   
   document.addEventListener("click", function(ev) {
-    request(ev.target.dataset.action, {}, onData);
+    request(ev.target.dataset.action, {});
   }, false);
   
-  request(startAction, {}, onData);
+  request(startAction, {});
 }

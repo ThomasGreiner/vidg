@@ -19,10 +19,8 @@ function formatSize(size) {
   return `${size.toFixed(size < 10 ? 1 : 0)} GB`;
 }
 
-function onFileData(status, file) {
-  if (status != 200)
-    return;
-  
+function onFileData(ev) {
+  var file = ev.detail;
   var fileparts = file.path.split("/");
   var path = $("#path");
   path.textContent = "";
@@ -40,6 +38,7 @@ function onFileData(status, file) {
   document.body.dataset.hasNext = file.stats.hasNext;
   document.body.dataset.rating = file.rating;
 }
+document.addEventListener("actionsuccess", onFileData);
 
 registerActions("current", {
   "ArrowDown": "rate-down",
@@ -49,4 +48,4 @@ registerActions("current", {
   "ArrowUp": "rate-up",
   "CTRL+ArrowLeft": "prev-unrated",
   "CTRL+ArrowRight": "next-unrated"
-}, onFileData);
+});

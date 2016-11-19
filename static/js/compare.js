@@ -42,7 +42,8 @@ function renderFile(id, a, b) {
   eSize.textContent = formatSize(a.stats.size);
 }
 
-function renderComparison(status, comparison) {
+function renderComparison(ev) {
+  var comparison = ev.detail;
   var eSimilar = $("#similarity");
   eSimilar.querySelector(".total").textContent = formatSimilarity(comparison.factors.size);
   eSimilar.querySelector(".size").textContent = formatSimilarity(comparison.factors.size);
@@ -55,8 +56,9 @@ function renderComparison(status, comparison) {
   document.body.dataset.hasPrev = comparison.stats.hasPrev;
   document.body.dataset.hasNext = comparison.stats.hasNext;
 }
+document.addEventListener("actionsuccess", renderComparison);
 
 registerActions("compare/current", {
   "ArrowLeft": "compare/prev",
   "ArrowRight": "compare/next"
-}, renderComparison);
+});
