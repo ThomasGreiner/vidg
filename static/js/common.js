@@ -46,7 +46,7 @@ function request(action, params, callback) {
 
 function registerActions(startAction, keyMap, onData) {
   window.addEventListener("keyup", function(ev) {
-    var key = ev.keyIdentifier;
+    var key = ev.key;
     if (ev.ctrlKey) {
       key = `CTRL+${key}`;
     }

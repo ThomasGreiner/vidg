@@ -25,10 +25,10 @@ function onFileData(status, file) {
 }
 
 registerActions("current", {
-  "Down": "rate-down",
+  "ArrowDown": "rate-down",
   "Enter": "view",
-  "Left": "prev",
-  "Right": "next",
-  "Up": "rate-up",
-  "CTRL+Right": "next-unrated"
+  "ArrowLeft": "prev",
+  "ArrowRight": "next",
+  "ArrowUp": "rate-up",
+  "CTRL+ArrowRight": "next-unrated"
 }, onFileData);

@@ -57,6 +57,6 @@ function renderComparison(status, comparison) {
 }
 
 registerActions("compare/current", {
-  "Left": "compare/prev",
-  "Right": "compare/next"
+  "ArrowLeft": "compare/prev",
+  "ArrowRight": "compare/next"
 }, renderComparison);
