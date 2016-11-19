@@ -62,3 +62,7 @@ function registerActions(startAction, keyMap) {
   
   request(startAction, {});
 }
+
+document.addEventListener("change", function(ev) {
+  request(ev.target.name, {value: ev.target.value});
+}, false);

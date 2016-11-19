@@ -40,6 +40,11 @@ function onFileData(ev) {
 }
 document.addEventListener("actionsuccess", onFileData);
 
+function onError(ev) {
+  window.alert("Error retrieving file from server");
+}
+document.addEventListener("actionerror", onError);
+
 registerActions("current", {
   "ArrowDown": "rate-down",
   "Enter": "view",
