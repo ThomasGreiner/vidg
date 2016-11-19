@@ -30,5 +30,6 @@ registerActions("current", {
   "ArrowLeft": "prev",
   "ArrowRight": "next",
   "ArrowUp": "rate-up",
+  "CTRL+ArrowLeft": "prev-unrated",
   "CTRL+ArrowRight": "next-unrated"
 }, onFileData);
