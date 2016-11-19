@@ -23,7 +23,7 @@ function onFileData(status, file) {
   if (status != 200)
     return;
   
-  var fileparts = file.path.split("/").slice(1);
+  var fileparts = file.path.split("/");
   var path = $("#path");
   path.textContent = "";
   while (fileparts.length > 1) {
