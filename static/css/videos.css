@@ -112,5 +112,5 @@ body[data-rating="-1"] button[data-action="rate-down"] {
 /* content */
 
 #preview {
-  margin: 20px;
+  margin-bottom: 20px;
 }

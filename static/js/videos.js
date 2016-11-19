@@ -3,6 +3,22 @@
 
 "use strict";
 
+function formatSize(size) {
+  if (size < 1024)
+    return `${size} B`;
+  
+  size /= 1024;
+  if (size < 1024)
+    return `${size.toFixed(size < 10 ? 1 : 0)} KB`;
+  
+  size /= 1024;
+  if (size < 1024)
+    return `${size.toFixed(size < 10 ? 1 : 0)} MB`;
+  
+  size /= 1024;
+  return `${size.toFixed(size < 10 ? 1 : 0)} GB`;
+}
+
 function onFileData(status, file) {
   if (status != 200)
     return;
@@ -17,6 +33,7 @@ function onFileData(status, file) {
   
   $("#distribution").src = file.stats.distributionImage;
   $("#name").textContent = fileparts.pop();
+  $("#size").textContent = formatSize(file.size);
   $("#preview").src = file.preview;
   $("#status").src = file.stats.statusImage;
   document.body.dataset.hasPrev = file.stats.hasPrev;

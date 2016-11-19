@@ -47,8 +47,18 @@ header {
   color: #888;
 }
 
-#status {
+.row > * {
+  display: inline-block;
+  margin: 0px;
   margin-bottom: 10px;
+  vertical-align: middle;
+}
+
+.row > *:not(:last-child) {
+  margin-right: 10px;
+}
+
+#status {
   border-top: none;
   border-top-left-radius: 0px;
   border-top-right-radius: 0px;
