@@ -47,6 +47,7 @@ aside > fieldset > label {
 }
 
 aside select {
+  display: block;
   width: 100%;
   max-width: 100%;
 }
