@@ -16,7 +16,7 @@ HTMLElement.prototype.create = function (tagName) {
   return element;
 };
 
-var postActions = ["empty-trash", "rate-down", "rate-up", "view"];
+var postActions = ["empty-trash", "rate-down", "rate-up", "view", "view-all"];
 function request(action, params) {
   if (!action)
     return;

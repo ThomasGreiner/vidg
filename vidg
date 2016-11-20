@@ -53,7 +53,7 @@ if (argv.server || argv.toprated) {
   const server = require("./lib/server");
   result = result.then(() => server.createServer(db));
   if (argv.toprated) {
-    result = result.then(() => open("http://localhost:8080/playlist.m3u8", "vlc"));
+    result = result.then(() => open("http://localhost:8080/playlist/top-rated.m3u8", "vlc"));
   }
 }
 result.catch((err) => console.error(`Bootstrap error: ${err.stack}`));
