@@ -55,8 +55,9 @@ let result = metaSync.sync({
   update: argv.update
 });
 if (argv.server || argv.toprated) {
-  const server = require("./lib/server");
-  result = result.then(() => server.createServer(db, argv.port));
+  const Server = require("./lib/server");
+  let server = new Server(db);
+  result = result.then(() => server.listen(argv.port));
   if (argv.toprated) {
     result = result.then(() => open("http://localhost:8080/playlist/top-rated.m3u8", "vlc"));
   }
