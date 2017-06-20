@@ -2,6 +2,7 @@
 <html>
 <head>
   <title>vidg</title>
+  <meta charset="utf-8">
   <link rel="stylesheet" type="text/css" href="/static/bootstrap/css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="/static/css/common.css">
   <link rel="stylesheet" type="text/css" href="/static/css/videos.css">
@@ -35,10 +36,9 @@
       <option value="5">5</option>
     </select>
     
-    <select name="filter-samesize">
-      <option value="any">special</option>
-      <option value="same-size">same size</option>
-    </select>
+    <label>
+      <input type="checkbox" name="filter-samesize"> same size
+    </label>
     
     <button
       class="btn btn-default glyphicon glyphicon-play"
@@ -48,6 +48,10 @@
   
   <fieldset class="row">
     <label>sort by...</label>
+    <select name="sort">
+      <option value="size-asc">size ↑</option>
+      <option value="size-desc" selected>size ↓</option>
+    </select>
   </fieldset>
 </aside>
 

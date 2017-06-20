@@ -64,5 +64,9 @@ function registerActions(startAction, keyMap) {
 }
 
 document.addEventListener("change", function(ev) {
-  request(ev.target.name, {value: ev.target.value});
+  let {target} = ev;
+  let value = ("checked" in target) ? target.checked : target.value;
+  
+  request(target.name, {value});
+  target.blur();
 }, false);
