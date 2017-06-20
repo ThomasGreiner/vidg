@@ -34,6 +34,7 @@ function onFileData(ev) {
   $("#size").textContent = formatSize(file.size);
   $("#preview").src = file.preview;
   $("#status").src = file.stats.statusImage;
+  document.body.dataset.error = false;
   document.body.dataset.hasPrev = file.stats.hasPrev;
   document.body.dataset.hasNext = file.stats.hasNext;
   document.body.dataset.rating = file.rating;
@@ -41,7 +42,7 @@ function onFileData(ev) {
 document.addEventListener("actionsuccess", onFileData);
 
 function onError(ev) {
-  window.alert("Error retrieving file from server");
+  document.body.dataset.error = true;
 }
 document.addEventListener("actionerror", onError);
 

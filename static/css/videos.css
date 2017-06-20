@@ -60,6 +60,12 @@ header #rating {
   background-color: #AAA;
 }
 
+body[data-error="true"] > header,
+body[data-error="true"] > #preview,
+body[data-error="true"] > #actions {
+  display: none;
+}
+
 body[data-rating="-1"] .rating {
   background-color: #D44;
 }
@@ -113,4 +119,16 @@ body[data-rating="-1"] button[data-action="rate-down"] {
 
 #preview {
   margin-bottom: 20px;
+}
+
+/* error */
+
+#error {
+  padding: 50px;
+  font-size: 24px;
+  font-weight: 600;
+}
+
+body:not([data-error="true"]) #error {
+  display: none;
 }
