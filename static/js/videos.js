@@ -29,7 +29,13 @@ function onFileData(ev) {
     part.textContent = fileparts.shift();
   }
   
+  let ratingSizes = Object.keys(file.stats.ratingSizes)
+    .sort()
+    .map((rating) => `${rating}: ${formatSize(file.stats.ratingSizes[rating])}`)
+    .join("\n");
+  
   $("#distribution").src = file.stats.distributionImage;
+  $("#distribution").title = ratingSizes;
   $("#name").textContent = fileparts.pop();
   $("#size").textContent = formatSize(file.size);
   $("#preview").src = file.preview;
