@@ -24,6 +24,7 @@ aside {
   position: absolute;
   top: 0px;
   left: 0px;
+  width: 150px;
   margin: 0px;
   padding: 0px;
 }
@@ -44,6 +45,10 @@ aside > fieldset > label {
   margin: 10px;
   margin-top: 0px;
   font-weight: bold;
+}
+
+aside input {
+  max-width: 100px;
 }
 
 aside select {
