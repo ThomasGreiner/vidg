@@ -3,6 +3,21 @@
 
 "use strict";
 
+function formatDate(timestamp) {
+  let date = new Date(timestamp);
+  return date.toDateString();
+}
+
+function formatTime(seconds) {
+  return new Intl.DateTimeFormat(undefined, {
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
+    hour12: false,
+    timeZone: "UTC"
+  }).format(seconds * 1000);
+}
+
 function formatSize(size) {
   if (size < 1024)
     return `${size} B`;
@@ -34,8 +49,10 @@ function onFileData(ev) {
     .map((rating) => `${rating}: ${formatSize(file.stats.ratingSizes[rating])}`)
     .join("\n");
   
+  $("#created").textContent = formatDate(file.created);
   $("#distribution").src = file.stats.distributionImage;
   $("#distribution").title = ratingSizes;
+  $("#duration").textContent = formatTime(file.duration);
   $("#name").textContent = fileparts.pop();
   $("#size").textContent = formatSize(file.size);
   $("#preview").src = file.preview;

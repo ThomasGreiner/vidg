@@ -53,6 +53,10 @@
     <label>sort by...</label>
     <select name="sort">
       <option value="random">random</option>
+      <option value="created-asc">created ↑</option>
+      <option value="created-desc">created ↓</option>
+      <option value="duration-asc">duration ↑</option>
+      <option value="duration-desc">duration ↓</option>
       <option value="size-asc">size ↑</option>
       <option value="size-desc" selected>size ↓</option>
     </select>
@@ -75,7 +79,11 @@
     
     <span id="size"></span>
     
+    <span id="duration"></span>
+    
     <h1 id="name"></h1>
+    
+    <span id="created"></span>
   </div>
   
   <div id="path" class="row"></div>
