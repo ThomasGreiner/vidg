@@ -59,7 +59,7 @@ if (argv.server || argv.toprated) {
   let server = new Server(db);
   result = result.then(() => server.listen(argv.port));
   if (argv.toprated) {
-    result = result.then(() => open("http://localhost:8080/playlist/top-rated.m3u8", "vlc"));
+    result = result.then(() => open(`http://localhost:${argv.port}/playlist/top-rated.m3u8`, "vlc"));
   }
 }
 result.catch((err) => console.error(`Bootstrap error: ${err.stack}`));
