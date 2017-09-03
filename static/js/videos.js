@@ -49,6 +49,7 @@ function onFileData(ev) {
     .map((rating) => `${rating}: ${formatSize(file.stats.ratingSizes[rating])}`)
     .join("\n");
   
+  $("#bitrate").textContent = `${file.bitrate} kb/s`;
   $("#created").textContent = formatDate(file.created);
   $("#distribution").src = file.stats.distributionImage;
   $("#distribution").title = ratingSizes;

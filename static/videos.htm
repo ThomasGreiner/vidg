@@ -40,6 +40,9 @@
     </select>
     
     <label>
+      <input type="checkbox" name="filter-sameduration"> same duration
+    </label>
+    <label>
       <input type="checkbox" name="filter-samesize"> same size
     </label>
     
@@ -53,6 +56,8 @@
     <label>sort by...</label>
     <select name="sort">
       <option value="random">random</option>
+      <option value="bitrate-asc">bitrate ↑</option>
+      <option value="bitrate-desc">bitrate ↓</option>
       <option value="created-asc">created ↑</option>
       <option value="created-desc">created ↓</option>
       <option value="duration-asc">duration ↑</option>
@@ -79,6 +84,8 @@
     
     <span id="size"></span>
     
+    <span id="bitrate"></span>
+    
     <span id="duration"></span>
     
     <h1 id="name"></h1>
@@ -89,6 +96,7 @@
   <div id="path" class="row"></div>
 </header>
 
+<!-- TODO: add HTML5 video element -->
 <img id="preview" data-action="view">
 
 <div id="actions">
