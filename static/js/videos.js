@@ -35,7 +35,7 @@ function formatSize(size) {
 }
 
 function onFileData(ev) {
-  var file = ev.detail;
+  var {file, stats} = ev.detail;
   var fileparts = file.path.split("/");
   var path = $("#path");
   path.textContent = "";
@@ -44,23 +44,23 @@ function onFileData(ev) {
     part.textContent = fileparts.shift();
   }
   
-  let ratingSizes = Object.keys(file.stats.ratingSizes)
+  let ratingSizes = Object.keys(stats.ratingSizes)
     .sort()
-    .map((rating) => `${rating}: ${formatSize(file.stats.ratingSizes[rating])}`)
+    .map((rating) => `${rating}: ${formatSize(stats.ratingSizes[rating])}`)
     .join("\n");
   
-  $("#bitrate").textContent = `${file.bitrate} kb/s`;
-  $("#created").textContent = formatDate(file.created);
-  $("#distribution").src = file.stats.distributionImage;
+  $("#bitrate").textContent = `${file.stats.bitrate} kb/s`;
+  $("#created").textContent = formatDate(file.stats.created);
+  $("#distribution").src = stats.distributionImage;
   $("#distribution").title = ratingSizes;
-  $("#duration").textContent = formatTime(file.duration);
+  $("#duration").textContent = formatTime(file.stats.duration);
   $("#name").textContent = fileparts.pop();
-  $("#size").textContent = formatSize(file.size);
+  $("#size").textContent = formatSize(file.stats.size);
   $("#preview").src = file.preview;
-  $("#status").src = file.stats.statusImage;
+  $("#status").src = stats.statusImage;
   document.body.dataset.error = false;
-  document.body.dataset.hasPrev = file.stats.hasPrev;
-  document.body.dataset.hasNext = file.stats.hasNext;
+  document.body.dataset.hasPrev = stats.hasPrev;
+  document.body.dataset.hasNext = stats.hasNext;
   document.body.dataset.rating = file.rating;
 }
 document.addEventListener("actionsuccess", onFileData);
