@@ -44,15 +44,15 @@ function onFileData(ev) {
     part.textContent = fileparts.shift();
   }
   
-  let ratingSizes = Object.keys(stats.ratingSizes)
+  let ratings = Object.keys(stats.ratings)
     .sort()
-    .map((rating) => `${rating}: ${formatSize(stats.ratingSizes[rating])}`)
+    .map((rating) => `${rating}: ${formatSize(stats.ratings[rating].size)} | ${stats.ratings[rating].count}`)
     .join("\n");
   
   $("#bitrate").textContent = `${file.stats.bitrate} kb/s`;
   $("#created").textContent = formatDate(file.stats.created);
   $("#distribution").src = stats.distributionImage;
-  $("#distribution").title = ratingSizes;
+  $("#distribution").title = ratings;
   $("#duration").textContent = formatTime(file.stats.duration);
   $("#name").textContent = fileparts.pop();
   $("#size").textContent = formatSize(file.stats.size);
