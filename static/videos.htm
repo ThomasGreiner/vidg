@@ -4,7 +4,6 @@
   <title>vidg</title>
   <meta charset="utf-8">
   <link rel="stylesheet" type="text/css" href="/static/bootstrap/css/bootstrap.min.css">
-  <link rel="stylesheet" type="text/css" href="/static/css/common.css">
   <link rel="stylesheet" type="text/css" href="/static/css/videos.css">
   <script src="/static/js/common.js" defer></script>
   <script src="/static/js/videos.js" defer></script>
@@ -24,9 +23,10 @@
   </div>
   
   <fieldset class="row">
-    <label>filter by...</label>
-    
-    <input name="filter-search" type="search" value="" placeholder="search…">
+    <label>
+      filter by...
+      <input name="filter-search" type="search" value="" placeholder="search…">
+    </label>
     
     <select name="filter-rating">
       <option value="any">rating</option>
@@ -68,59 +68,64 @@
   </fieldset>
 </aside>
 
-<header>
-  <div class="row">
-    <img id="status">
-  </div>
-  
-  <div class="row">
-    <div id="rating">
-      <div class="rating"></div>
-      <div class="rating"></div>
-      <div class="rating"></div>
-      <div class="rating"></div>
-      <div class="rating"></div>
+<main>
+  <!-- TODO: unset if error -->
+  <header>
+    <div class="row">
+      <img id="status">
     </div>
     
-    <span id="size"></span>
-    
-    <span id="bitrate"></span>
-    
-    <span id="duration"></span>
-    
-    <h1 id="name"></h1>
-    
-    <span id="created"></span>
+    <div class="row">
+      <div id="rating">
+        <div class="rating"></div>
+        <div class="rating"></div>
+        <div class="rating"></div>
+        <div class="rating"></div>
+        <div class="rating"></div>
+      </div>
+      
+      <h1 id="name"></h1>
+    </div>
+  </header>
+  
+  <!-- TODO: add HTML5 video element -->
+  <img id="preview" data-action="view">
+  
+  <div id="error">
+    File not found
   </div>
   
-  <div id="path" class="row"></div>
-</header>
+  <!-- TODO: unset if error -->
+  <div id="actions">
+    <button
+      class="btn btn-default glyphicon glyphicon-chevron-left"
+      data-action="prev">
+    </button>
+    <button
+      class="btn btn-success glyphicon glyphicon-arrow-up"
+      data-action="rate-up">
+    </button>
+    <button
+      class="btn btn-danger glyphicon glyphicon-arrow-down"
+      data-action="rate-down">
+    </button>
+    <button
+      class="btn btn-default glyphicon glyphicon-chevron-right"
+      data-action="next">
+    </button>
+  </div>
+</main>
 
-<!-- TODO: add HTML5 video element -->
-<img id="preview" data-action="view">
-
-<div id="actions">
-  <button
-    class="btn btn-default glyphicon glyphicon-chevron-left"
-    data-action="prev">
-  </button>
-  <button
-    class="btn btn-success glyphicon glyphicon-arrow-up"
-    data-action="rate-up">
-  </button>
-  <button
-    class="btn btn-danger glyphicon glyphicon-arrow-down"
-    data-action="rate-down">
-  </button>
-  <button
-    class="btn btn-default glyphicon glyphicon-chevron-right"
-    data-action="next">
-  </button>
-</div>
-
-<div id="error">
-  File not found
-</div>
+<aside>
+  <!-- TODO: unset if error -->
+  <fieldset>
+    <div id="size"></div>
+    <div id="bitrate"></div>
+    <div id="duration"></div>
+    <div id="created"></div>
+    <div id="path"></div>
+  </fieldset>
+</aside>
 
 </body>
 </html>

@@ -40,7 +40,7 @@ function onFileData(ev) {
   var path = $("#path");
   path.textContent = "";
   while (fileparts.length > 1) {
-    var part = path.create("button");
+    var part = path.create("div");
     part.textContent = fileparts.shift();
   }
   
