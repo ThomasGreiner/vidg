@@ -55,6 +55,34 @@ aside .row {
   border-radius: 50px;
 }
 
+#meta > div {
+  padding: 2px 5px;
+}
+
+[data-magnitude="0"] {
+  background-color: hsla(0, 70%, 50%, 0);
+}
+
+[data-magnitude="1"] {
+  background-color: hsla(0, 70%, 50%, 0.2);
+}
+
+[data-magnitude="2"] {
+  background-color: hsla(0, 70%, 50%, 0.4);
+}
+
+[data-magnitude="3"] {
+  background-color: hsla(0, 70%, 50%, 0.6);
+}
+
+[data-magnitude="4"] {
+  background-color: hsla(0, 70%, 50%, 0.8);
+}
+
+[data-magnitude="5"] {
+  background-color: hsla(0, 70%, 50%, 1);
+}
+
 /* Content */
 
 main {

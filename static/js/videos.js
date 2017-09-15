@@ -35,7 +35,7 @@ function formatSize(size) {
 }
 
 function onFileData(ev) {
-  var {file, stats} = ev.detail;
+  var {file, ranges, stats} = ev.detail;
   var fileparts = file.path.split("/");
   var path = $("#path");
   path.textContent = "";
@@ -49,15 +49,30 @@ function onFileData(ev) {
     .map((rating) => `${rating}: ${formatSize(stats.ratings[rating].size)} | ${stats.ratings[rating].count}`)
     .join("\n");
   
-  $("#bitrate").textContent = `${file.stats.bitrate} kb/s`;
-  $("#created").textContent = formatDate(file.stats.created);
+  let bitrate = $("#bitrate");
+  bitrate.dataset.magnitude = Math.round(file.stats.bitrate / (ranges.bitrate.max - ranges.bitrate.min) * 5, 0);
+  bitrate.textContent = `${file.stats.bitrate} kb/s`;
+  
   $("#distribution").src = stats.distributionImage;
   $("#distribution").title = ratings;
-  $("#duration").textContent = formatTime(file.stats.duration);
   $("#name").textContent = fileparts.pop();
-  $("#size").textContent = formatSize(file.stats.size);
   $("#preview").src = file.preview;
   $("#status").src = stats.statusImage;
+  
+  function setStat(name, format) {
+    let range = ranges[name];
+    let element = $(`#${name}`);
+    element.dataset.magnitude = Math.round(
+      (file.stats[name] - range.min) / (range.max - range.min) * 5,
+      0
+    );
+    element.textContent = format(file.stats[name]);
+  }
+  
+  setStat("created", formatDate);
+  setStat("duration", formatTime);
+  setStat("size", formatSize);
+  
   document.body.dataset.error = false;
   document.body.dataset.hasPrev = stats.hasPrev;
   document.body.dataset.hasNext = stats.hasNext;
