@@ -4,8 +4,10 @@
 "use strict";
 
 function formatDate(timestamp) {
-  let date = new Date(timestamp);
-  return date.toDateString();
+  return new Intl.DateTimeFormat(undefined, {
+    month: "short",
+    year: "numeric"
+  }).format(timestamp);
 }
 
 function formatTime(seconds) {

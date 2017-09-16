@@ -23,21 +23,28 @@
   </div>
   
   <fieldset class="row">
+    <legend>Filter</legend>
+    
     <label>
-      filter by...
       <input name="filter-search" type="search" value="" placeholder="search…">
     </label>
     
-    <select name="filter-rating">
-      <option value="any">rating</option>
-      <option value="-1">-1</option>
-      <option value="0">0</option>
-      <option value="1">1</option>
-      <option value="2">2</option>
-      <option value="3">3</option>
-      <option value="4">4</option>
-      <option value="5">5</option>
-    </select>
+    <fieldset id="filter-rating">
+      <legend>Rating</legend>
+      
+      <div>
+        <input type="radio" name="filter-rating" value="any">
+        <input type="radio" name="filter-rating" value="-1">
+        <input type="radio" name="filter-rating" value="0">
+      </div>
+      <div>
+        <input type="radio" name="filter-rating" value="1">
+        <input type="radio" name="filter-rating" value="2">
+        <input type="radio" name="filter-rating" value="3">
+        <input type="radio" name="filter-rating" value="4">
+        <input type="radio" name="filter-rating" value="5">
+      </div>
+    </fieldset>
     
     <label>
       <input type="checkbox" name="filter-sameduration"> same duration
@@ -52,19 +59,33 @@
     </button>
   </fieldset>
   
-  <fieldset class="row">
-    <label>sort by...</label>
-    <select name="sort">
-      <option value="random">random</option>
-      <option value="bitrate-asc">bitrate ↑</option>
-      <option value="bitrate-desc">bitrate ↓</option>
-      <option value="created-asc">created ↑</option>
-      <option value="created-desc">created ↓</option>
-      <option value="duration-asc">duration ↑</option>
-      <option value="duration-desc">duration ↓</option>
-      <option value="size-asc">size ↑</option>
-      <option value="size-desc" selected>size ↓</option>
-    </select>
+  <fieldset id="sort" class="row">
+    <legend>Sort</legend>
+    
+    <div>
+      <input type="radio" name="sort" value="random">
+      Random
+    </div>
+    <div>
+      <input type="radio" name="sort" value="bitrate-asc">
+      <input type="radio" name="sort" value="bitrate-desc">
+      Bitrate
+    </div>
+    <div>
+      <input type="radio" name="sort" value="created-asc">
+      <input type="radio" name="sort" value="created-desc">
+      Created
+    </div>
+    <div>
+      <input type="radio" name="sort" value="duration-asc">
+      <input type="radio" name="sort" value="duration-desc">
+      Duration
+    </div>
+    <div>
+      <input type="radio" name="sort" value="size-asc">
+      <input type="radio" name="sort" value="size-desc">
+      Size
+    </div>
   </fieldset>
 </aside>
 
