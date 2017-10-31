@@ -153,6 +153,10 @@ main {
   max-height: 100%;
 }
 
+#player {
+  width: 100%;
+}
+
 #error {
   width: 100%;
   height: 100%;
@@ -161,7 +165,7 @@ main {
   font-weight: 600;
 }
 
-body[data-error="true"] #preview,
+body[data-error="true"] #player,
 body:not([data-error="true"]) #error {
   display: none;
 }
@@ -194,7 +198,7 @@ main > header {
 }
 
 body[data-error="true"] > header,
-body[data-error="true"] > #preview,
+body[data-error="true"] > #player,
 body[data-error="true"] > #actions {
   display: none;
 }

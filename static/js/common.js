@@ -17,7 +17,7 @@ HTMLElement.prototype.create = function (tagName) {
 };
 
 var postActions = ["empty-trash", "rate-down", "rate-up", "view", "view-all"];
-function request(action, params) {
+function request(action, params = {}) {
   if (!action)
     return;
   
@@ -52,15 +52,29 @@ function registerActions(startAction, keyMap) {
     if (ev.ctrlKey) {
       key = `CTRL+${key}`;
     }
+    if (ev.shiftKey) {
+      key = `SHIFT+${key}`;
+    }
     
-    request(keyMap[key], {});
+    let action = keyMap[key];
+    if (!action)
+      return;
+    
+    switch (typeof action) {
+      case "function":
+        action();
+        break;
+      case "string":
+        request(action);
+        break;
+    }
   }, true);
   
   document.addEventListener("click", function(ev) {
-    request(ev.target.dataset.action, {});
+    request(ev.target.dataset.action);
   }, false);
   
-  request(startAction, {});
+  request(startAction);
 }
 
 document.addEventListener("change", function(ev) {

@@ -58,8 +58,11 @@ function onFileData(ev) {
   $("#distribution").src = stats.distributionImage;
   $("#distribution").title = ratings;
   $("#name").textContent = fileparts.pop();
-  $("#preview").src = file.preview;
   $("#status").src = stats.statusImage;
+  
+  let player = $("#player");
+  player.poster = file.preview;
+  player.src = `/video?id=${file.id}`;
   
   function setStat(name, format) {
     let range = ranges[name];
@@ -89,10 +92,68 @@ document.addEventListener("actionerror", onError);
 
 registerActions("current", {
   "ArrowDown": "rate-down",
-  "Enter": "view",
-  "ArrowLeft": "prev",
-  "ArrowRight": "next",
-  "ArrowUp": "rate-up",
-  "CTRL+ArrowLeft": "prev-unrated",
-  "CTRL+ArrowRight": "next-unrated"
+  "Enter": () => {
+    let player = $("#player");
+    if (player.paused) {
+      player.webkitRequestFullscreen();
+      player.play();
+    } else {
+      document.webkitExitFullscreen();
+      request("current");
+    }
+  },
+  "ArrowLeft": () => {
+    let player = $("#player");
+    if (player.paused) {
+      request("prev");
+    } else {
+      player.currentTime -= 60;
+    }
+  },
+  "ArrowRight": () => {
+    let player = $("#player");
+    if (player.paused) {
+      request("next");
+    } else {
+      player.currentTime += 60;
+    }
+  },
+  "ArrowUp": () => request("rate-up"),
+  " ": () => {
+    let player = $("#player");
+    if (player.paused) {
+      player.play();
+    } else {
+      player.pause();
+    }
+  },
+  "CTRL+ArrowLeft": () => {
+    let player = $("#player");
+    if (player.paused) {
+      request("prev-unrated");
+    } else {
+      player.currentTime -= 10;
+    }
+  },
+  "CTRL+ArrowRight": () => {
+    let player = $("#player");
+    if (player.paused) {
+      request("next-unrated");
+    } else {
+      player.currentTime += 10;
+    }
+  },
+  "CTRL+Enter": "view",
+  "SHIFT+ArrowLeft": () => {
+    let player = $("#player");
+    if (!player.paused) {
+      player.currentTime -= 3;
+    }
+  },
+  "SHIFT+ArrowRight": () => {
+    let player = $("#player");
+    if (!player.paused) {
+      player.currentTime += 3;
+    }
+  }
 });
