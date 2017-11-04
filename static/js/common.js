@@ -46,7 +46,7 @@ function request(action, params = {}) {
   xhr.send(param);
 }
 
-function registerActions(startAction, keyMap) {
+function registerActions(startAction, keyMap = {}, actionMap = {}) {
   window.addEventListener("keyup", function(ev) {
     var key = ev.key;
     if (ev.ctrlKey) {
@@ -65,13 +65,22 @@ function registerActions(startAction, keyMap) {
         action();
         break;
       case "string":
-        request(action);
+        if (action in actionMap) {
+          actionMap[action](null);
+        } else {
+          request(action);
+        }
         break;
     }
   }, true);
   
   document.addEventListener("click", function(ev) {
-    request(ev.target.dataset.action);
+    let action = ev.target.dataset.action;
+    if (action in actionMap) {
+      actionMap[action](ev.target.dataset.value);
+    } else {
+      request(action);
+    }
   }, false);
   
   request(startAction);

@@ -43,7 +43,8 @@ select {
   margin-bottom: 5px;
 }
 
-input[type="search"] {
+input[type="search"],
+input[type="time"] {
   width: 100px;
 }
 

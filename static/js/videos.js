@@ -156,4 +156,14 @@ registerActions("current", {
       player.currentTime += 3;
     }
   }
+}, {
+  "cut-set": (value) => {
+    $(`#cut-${value}`).value = formatTime($("#player").currentTime);
+  },
+  "cut": () => {
+    request("cut", {
+      start: $("#cut-start").value,
+      end: $("#cut-end").value
+    });
+  }
 });
