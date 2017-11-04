@@ -183,6 +183,7 @@ main > header {
 }
 
 #status {
+  max-width: 100%;
   border-top: none;
   border-top-left-radius: 0px;
   border-top-right-radius: 0px;
@@ -256,7 +257,6 @@ body[data-rating="5"] .rating:-webkit-any(
 #actions {
   display: flex;
   justify-content: center;
-  margin-top: 20px;
 }
 
 #actions button {
