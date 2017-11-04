@@ -89,53 +89,51 @@
   </fieldset>
 </aside>
 
-<main>
-  <!-- TODO: unset if error -->
-  <header>
-    <div class="row">
-      <img id="status">
+<!-- TODO: unset if error -->
+<header>
+  <div class="row">
+    <img id="status">
+  </div>
+  
+  <div class="row">
+    <div id="rating">
+      <div class="rating"></div>
+      <div class="rating"></div>
+      <div class="rating"></div>
+      <div class="rating"></div>
+      <div class="rating"></div>
     </div>
     
-    <div class="row">
-      <div id="rating">
-        <div class="rating"></div>
-        <div class="rating"></div>
-        <div class="rating"></div>
-        <div class="rating"></div>
-        <div class="rating"></div>
-      </div>
-      
-      <h1 id="name"></h1>
-    </div>
-  </header>
-  
-  <!-- obsolete: data-action="view" -->
-  <video id="player" preload="none" controls></video>
-  
-  <div id="error">
-    File not found
+    <h1 id="name"></h1>
   </div>
-  
-  <!-- TODO: unset if error -->
-  <div id="actions">
-    <button
-      class="btn btn-default glyphicon glyphicon-chevron-left"
-      data-action="prev">
-    </button>
-    <button
-      class="btn btn-success glyphicon glyphicon-arrow-up"
-      data-action="rate-up">
-    </button>
-    <button
-      class="btn btn-danger glyphicon glyphicon-arrow-down"
-      data-action="rate-down">
-    </button>
-    <button
-      class="btn btn-default glyphicon glyphicon-chevron-right"
-      data-action="next">
-    </button>
-  </div>
-</main>
+</header>
+
+<!-- obsolete: data-action="view" -->
+<video id="player" preload="none" controls></video>
+
+<div id="error">
+  File not found
+</div>
+
+<!-- TODO: unset if error -->
+<footer id="actions">
+  <button
+    class="btn btn-default glyphicon glyphicon-chevron-left"
+    data-action="prev">
+  </button>
+  <button
+    class="btn btn-success glyphicon glyphicon-arrow-up"
+    data-action="rate-up">
+  </button>
+  <button
+    class="btn btn-danger glyphicon glyphicon-arrow-down"
+    data-action="rate-down">
+  </button>
+  <button
+    class="btn btn-default glyphicon glyphicon-chevron-right"
+    data-action="next">
+  </button>
+</footer>
 
 <aside>
   <!-- TODO: unset if error -->
