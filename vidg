@@ -10,7 +10,7 @@ const database = require("./lib/db");
 const MetaDataSync = require("./lib/sync").MetaDataSync;
 
 const argv = optimist
-    .usage("$0 [-h][-s][-t][-u|-U] <input>".yellow)
+    .usage("$0 [-h][-r <min-rating>][-s][-u|-U] <input>".yellow)
     .option("h", {
       alias: "help",
       description: "Show usage"
@@ -20,13 +20,13 @@ const argv = optimist
       default: 8080,
       description: "Server port"
     })
+    .option("r", {
+      alias: "rating",
+      description: "Play media by rating"
+    })
     .option("s", {
       alias: "server",
       description: "Start server"
-    })
-    .option("t", {
-      alias: "toprated",
-      description: "Play top rated media"
     })
     .option("u", {
       alias: "update",
@@ -36,7 +36,7 @@ const argv = optimist
       alias: "forceupdate",
       description: "Force update meta data and previews (overwrite existing)"
     })
-    .boolean(["h", "s", "t", "u", "U"])
+    .boolean(["h", "s", "u", "U"])
     .check((argv) => {
       if (argv.help)
         throw "";
@@ -54,12 +54,14 @@ let result = metaSync.sync({
   inputDir,
   update: argv.update
 });
-if (argv.server || argv.toprated) {
+if (argv.server || "rating" in argv) {
   const Server = require("./lib/server");
   let server = new Server(db);
   result = result.then(() => server.listen(argv.port));
-  if (argv.toprated) {
-    result = result.then(() => open(`http://localhost:${argv.port}/playlist/top-rated.m3u8`, "vlc"));
+  
+  if ("rating" in argv) {
+    db.setPlaylist({rating: argv.rating});
+    result = result.then(() => open(`http://localhost:${argv.port}/playlist/videos.m3u8`, "vlc"));
   }
 }
 result.catch((err) => console.error(`Bootstrap error: ${err.stack}`));
