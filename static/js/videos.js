@@ -90,10 +90,20 @@ function onError(ev) {
 }
 document.addEventListener("actionerror", onError);
 
+let player = $("#player");
+
+player.addEventListener("ended", () => {
+  document.webkitExitFullscreen();
+  location.reload();
+});
+
+player.addEventListener("error", () => {
+  document.webkitExitFullscreen();
+});
+
 registerActions("current", {
   "ArrowDown": "rate-down",
   "Enter": () => {
-    let player = $("#player");
     if (player.paused) {
       player.webkitRequestFullscreen();
       player.play();
@@ -103,7 +113,6 @@ registerActions("current", {
     }
   },
   "ArrowLeft": () => {
-    let player = $("#player");
     if (player.paused) {
       request("prev");
     } else {
@@ -111,7 +120,6 @@ registerActions("current", {
     }
   },
   "ArrowRight": () => {
-    let player = $("#player");
     if (player.paused) {
       request("next");
     } else {
@@ -120,7 +128,6 @@ registerActions("current", {
   },
   "ArrowUp": () => request("rate-up"),
   " ": () => {
-    let player = $("#player");
     if (player.paused) {
       player.play();
     } else {
@@ -128,7 +135,6 @@ registerActions("current", {
     }
   },
   "CTRL+ArrowLeft": () => {
-    let player = $("#player");
     if (player.paused) {
       request("prev-unrated");
     } else {
@@ -136,7 +142,6 @@ registerActions("current", {
     }
   },
   "CTRL+ArrowRight": () => {
-    let player = $("#player");
     if (player.paused) {
       request("next-unrated");
     } else {
@@ -145,13 +150,11 @@ registerActions("current", {
   },
   "CTRL+Enter": "view",
   "SHIFT+ArrowLeft": () => {
-    let player = $("#player");
     if (!player.paused) {
       player.currentTime -= 3;
     }
   },
   "SHIFT+ArrowRight": () => {
-    let player = $("#player");
     if (!player.paused) {
       player.currentTime += 3;
     }
