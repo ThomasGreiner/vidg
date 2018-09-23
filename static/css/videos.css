@@ -10,6 +10,14 @@
   --r5: #2D2;
 }
 
+video::-webkit-media-controls-overlay-play-button {
+  display: none;
+}
+
+video::-webkit-media-controls-timeline {
+  opacity: 1;
+}
+
 body {
   display: flex;
   background-color: #EFEFEF;
@@ -50,7 +58,7 @@ input[type="search"] {
 /* Sidebars */
 
 aside {
-  min-width: 150px;
+  width: 150px;
   padding: 10px;
   text-align: center;
 }
@@ -114,6 +122,13 @@ aside input[type="radio"]:checked::before {
 
 #sort input[value$="-desc"]::before {
   background-color: var(--r5);
+}
+
+#meta div {
+  width: 100px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 
 #meta > div {
