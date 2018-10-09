@@ -10,7 +10,7 @@ const database = require("./lib/db");
 const MetaDataSync = require("./lib/sync").MetaDataSync;
 
 const argv = optimist
-    .usage("$0 [-h][-r <min-rating>][-s][-u|-U] <input>".yellow)
+    .usage("$0 [-h][-q <query>][-r <min-rating>][-s][-u|-U] <input>".yellow)
     .option("h", {
       alias: "help",
       description: "Show usage"
@@ -19,6 +19,10 @@ const argv = optimist
       alias: "port",
       default: 8080,
       description: "Server port"
+    })
+    .option("q", {
+      alias: "query",
+      description: "Play media by search query"
     })
     .option("r", {
       alias: "rating",
@@ -54,13 +58,13 @@ let result = metaSync.sync({
   inputDir,
   update: argv.update
 });
-if (argv.server || "rating" in argv) {
+if (argv.server || "query" in argv || "rating" in argv) {
   const Server = require("./lib/server");
   let server = new Server(db);
   result = result.then(() => server.listen(argv.port));
   
-  if ("rating" in argv) {
-    db.setPlaylist({rating: argv.rating});
+  if ("query" in argv || "rating" in argv) {
+    db.setPlaylist({query: argv.query, rating: argv.rating});
     result = result.then(() => open(`http://localhost:${argv.port}/playlist/videos.m3u8`, "vlc"));
   }
 }
