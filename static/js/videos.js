@@ -77,6 +77,8 @@ function onFileData(ev) {
   setStat("created", formatDate);
   setStat("duration", formatTime);
   setStat("size", formatSize);
+  setStat("width", (width) => `w: ${width}px`);
+  setStat("height", (height) => `h: ${height}px`);
   
   document.body.dataset.error = false;
   document.body.dataset.hasPrev = stats.hasPrev;
