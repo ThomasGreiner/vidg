@@ -1,6 +1,8 @@
 vidg - the hot-or-not for stored videos
 =======================================
 
+[![Build Status](https://travis-ci.org/ThomasGreiner/vidg.svg?branch=master)](https://travis-ci.org/ThomasGreiner/vidg)
+
 ## What it does
 
 1. Creates index and prepares preview images of all videos in file `.vidg.sqlite`
@@ -62,3 +64,7 @@ vidg [-h][-p <port>][-r <min-rating>][-s][-u|-U] <input>
   ```
   apt-get install sqlite3
   ```
+
+## Tests
+
+Run tests via `npm test` or `node test`.
