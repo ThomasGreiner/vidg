@@ -1,10 +1,17 @@
 "use strict";
 
+function getPreview(path) {
+  return `data:${path}`;
+}
+exports.getPreview = getPreview;
+
 class ShotMaker {
-  constructor(path) {}
+  constructor(path) {
+    this._path = path;
+  }
   
   create() {
-    return "";
+    return getPreview(this._path);
   }
   
   getMetaData() {

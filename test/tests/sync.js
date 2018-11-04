@@ -10,11 +10,11 @@ const shotMock = require("../mocks/shot");
 
 const baseDir = "/home/user";
 const dbDir = path.join(baseDir, ".vidg.sqlite");
-const fileA = {id: 1, path: "a.mp4"};
-const fileB = {id: 2, path: "b.mp4"};
-const fileC = {id: 3, path: "c.mp4"};
+const fileA = {id: 1, path: "a.mp4", stats: {}};
+const fileB = {id: 2, path: "b.mp4", stats: {}};
+const fileC = {id: 3, path: "c.mp4", stats: {}};
 
-async function getMock(knownFiles, foundFiles) {
+async function getMock(knownFiles, foundFiles, opts = {}) {
   const {MetaDataSync} = requireInject("../../lib/sync", {
     fs: fsMock({[baseDir]: foundFiles}),
     "../../lib/shot": shotMock
@@ -22,7 +22,9 @@ async function getMock(knownFiles, foundFiles) {
   
   let db = dbMock({[dbDir]: knownFiles}).open(dbDir);
   let sync = new MetaDataSync(db);
-  await sync.sync({inputDir: baseDir});
+  
+  opts = Object.assign({inputDir: baseDir}, opts);
+  await sync.sync(opts);
   return db;
 }
 
@@ -30,7 +32,7 @@ function expectFiles(knownFiles, foundFiles) {
   knownFiles = knownFiles.map(({id, path}) => ({id, path}));
   foundFiles = foundFiles.map((file) => {
     let filepath = path.join(baseDir, file.path);
-    return Object.assign({}, file, {path: filepath});
+    return {id: file.id, path: filepath};
   });
   expect(knownFiles).deep.equal(foundFiles);
 }
@@ -46,6 +48,11 @@ describe("File syncing", () => {
     
     let knownFiles = await db.getAllFiles();
     expectFiles(knownFiles, foundFiles);
+    
+    let previews = knownFiles.map(({preview}) => preview);
+    let expectedPreviews = knownFiles
+        .map(({path}) => shotMock.getPreview(path));
+    expect(previews).deep.equal(expectedPreviews);
   });
   
   it("Remove missing files", async () => {
@@ -56,7 +63,47 @@ describe("File syncing", () => {
     expectFiles(knownFiles, foundFiles);
   });
   
-  // TODO: NYI
-  it("Update unchanged files", () => {});
-  it("Update moved files", () => {});
+  it("Update incomplete files", async () => {
+    let existingPreview = "data:foo";
+    let foundFiles = [fileA, fileB];
+    let db = await getMock([
+      Object.assign({preview: existingPreview}, fileA),
+      fileB
+    ], foundFiles, {update: true});
+    
+    let knownFiles = await db.getAllFiles();
+    expectFiles(knownFiles, foundFiles);
+    
+    let previews = knownFiles.map(({preview}) => preview);
+    let expectedPreviews = previews.slice();
+    expectedPreviews[0] = existingPreview;
+    expect(previews).deep.equal(expectedPreviews);
+  });
+  
+  it("Force update all files", async () => {
+    let existingPreview = "data:foo";
+    let foundFiles = [fileA, fileB];
+    let db = await getMock([
+      Object.assign({preview: existingPreview}, fileA),
+      fileB
+    ], foundFiles, {forceUpdate: true});
+    
+    let knownFiles = await db.getAllFiles();
+    expectFiles(knownFiles, foundFiles);
+    
+    let previews = knownFiles.map(({preview}) => preview);
+    let expectedPreviews = knownFiles
+        .map(({path}) => shotMock.getPreview(path));
+    expect(previews).deep.equal(expectedPreviews);
+  });
+  
+  it("Update moved files", async () => {
+    let foundFiles = [
+      Object.assign({}, fileA, {path: "aa.mp4"})
+    ];
+    let db = await getMock([fileA], foundFiles);
+    
+    let knownFiles = await db.getAllFiles();
+    expectFiles(knownFiles, foundFiles);
+  });
 });

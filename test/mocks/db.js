@@ -4,7 +4,7 @@ const db = new Map();
 
 class Database {
   constructor(path) {
-    this.resetMeta();
+    this._db = new Map();
     
     let files = db.get(path);
     for (let file of files) {
@@ -16,6 +16,11 @@ class Database {
     return Array.from(this._db.values());
   }
   
+  async getIncompleteFiles() {
+    let files = await this.getAllFiles();
+    return files.filter(({preview}) => !preview);
+  }
+  
   async insert(file) {
     this._db.set(file.id, Object.assign({}, file));
   }
@@ -25,7 +30,9 @@ class Database {
   }
   
   async resetMeta() {
-    this._db = new Map();
+    for (let file of this._db.values()) {
+      file.preview = null;
+    }
   }
   
   async setPath(id, filepath) {
