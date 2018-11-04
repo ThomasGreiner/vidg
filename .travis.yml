@@ -1,0 +1,5 @@
+before_install:
+  sudo apt-get install -y libgif-dev
+language: node_js
+node_js:
+  - "lts/*"
