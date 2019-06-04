@@ -1,13 +1,5 @@
-/* jslint browser: true */
-
-"use strict";
-
-function $(selector) {
+export function $(selector) {
   return document.querySelector(selector);
-}
-
-function $$(selector) {
-  return document.querySelectorAll(selector);
 }
 
 HTMLElement.prototype.create = function (tagName) {
@@ -17,7 +9,7 @@ HTMLElement.prototype.create = function (tagName) {
 };
 
 var postActions = ["empty-trash", "rate-down", "rate-up", "view", "view-all"];
-function request(action, params = {}) {
+export function request(action, params = {}) {
   if (!action)
     return;
   
@@ -46,7 +38,7 @@ function request(action, params = {}) {
   xhr.send(param);
 }
 
-function registerActions(startAction, keyMap) {
+export function registerActions(startAction, keyMap) {
   window.addEventListener("keyup", function(ev) {
     var key = ev.key;
     if (ev.ctrlKey) {
