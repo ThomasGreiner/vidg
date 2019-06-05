@@ -4,16 +4,16 @@ import {setPlayer} from "./player.js";
 import {setPath, setStats} from "./ui.js";
 
 function onFileData(ev) {
-  var {file, ranges, ratings, status} = ev.detail;
+  let {charts, file, ranges, ratings, status} = ev.detail;
   
   let ratingsTooltip = Object.keys(ratings)
     .sort()
     .map((rating) => `${rating}: ${formatSize(ratings[rating].size)} | ${ratings[rating].count}`)
     .join("\n");
   
-  $("#distribution").src = status.distributionImage;
-  $("#distribution").title = ratingsTooltip;
-  $("#status").src = status.statusImage;
+  $("#chart-distribution").src = charts.distribution;
+  $("#chart-distribution").title = ratingsTooltip;
+  $("#chart-status").src = charts.status;
   
   setPath(file.path);
   setPlayer(file.id, file.preview);

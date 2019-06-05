@@ -67,7 +67,7 @@ aside .row {
   margin-bottom: 10px;
 }
 
-#distribution {
+#chart-distribution {
   width: 100px;
   height: 100px;
   border-radius: 50px;
@@ -197,7 +197,7 @@ main > header {
   flex-shrink: 1;
 }
 
-#status {
+#chart-status {
   max-width: 100%;
   border-top: none;
   border-top-left-radius: 0px;
