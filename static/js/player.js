@@ -1,4 +1,5 @@
-import {$, registerActions, request} from "./common.js";
+import {request} from "./api.js";
+import {$, registerActions} from "./common.js";
 
 let player = $("#player");
 

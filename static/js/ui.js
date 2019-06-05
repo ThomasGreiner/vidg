@@ -18,8 +18,9 @@ export function setPath(filepath) {
   let path = $("#path");
   path.textContent = "";
   while (fileparts.length > 1) {
-    let part = path.create("div");
+    let part = document.createElement("div");
     part.textContent = fileparts.shift();
+    path.appendChild(part);
   }
   
   $("#name").textContent = fileparts.pop();

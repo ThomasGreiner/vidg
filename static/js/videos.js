@@ -1,6 +1,21 @@
+import {request} from "./api.js";
 import {$} from "./common.js";
 import {setPlayer} from "./player.js";
 import {setCharts, setPath, setStats} from "./ui.js";
+
+function onChange(ev) {
+  let {target} = ev;
+  let value = (target.type == "checkbox") ? target.checked : target.value;
+  
+  request(target.name, {value});
+  target.blur();
+}
+document.addEventListener("change", onChange);
+
+function onError(ev) {
+  document.body.dataset.error = true;
+}
+document.addEventListener("actionerror", onError);
 
 function onFileData(ev) {
   let {charts, file, ranges, ratings, status} = ev.detail;
@@ -16,8 +31,3 @@ function onFileData(ev) {
   document.body.dataset.rating = file.rating;
 }
 document.addEventListener("actionsuccess", onFileData);
-
-function onError(ev) {
-  document.body.dataset.error = true;
-}
-document.addEventListener("actionerror", onError);
