@@ -1,20 +1,11 @@
 import {$} from "./common.js";
-import {formatSize} from "./format.js";
 import {setPlayer} from "./player.js";
-import {setPath, setStats} from "./ui.js";
+import {setCharts, setPath, setStats} from "./ui.js";
 
 function onFileData(ev) {
   let {charts, file, ranges, ratings, status} = ev.detail;
   
-  let ratingsTooltip = Object.keys(ratings)
-    .sort()
-    .map((rating) => `${rating}: ${formatSize(ratings[rating].size)} | ${ratings[rating].count}`)
-    .join("\n");
-  
-  $("#chart-distribution").src = charts.distribution;
-  $("#chart-distribution").title = ratingsTooltip;
-  $("#chart-status").src = charts.status;
-  
+  setCharts(charts, ratings);
   setPath(file.path);
   setPlayer(file.id, file.preview);
   setStats(file.stats, ranges);

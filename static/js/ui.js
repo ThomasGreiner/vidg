@@ -1,6 +1,17 @@
 import {$} from "./common.js";
 import {formatDate, formatSize, formatTime} from "./format.js";
 
+export function setCharts(charts, ratings) {
+  let ratingsTooltip = Object.keys(ratings)
+    .sort()
+    .map((rating) => `${rating}: ${formatSize(ratings[rating].size)} | ${ratings[rating].count}`)
+    .join("\n");
+  
+  $("#chart-distribution").src = charts.distribution;
+  $("#chart-distribution").title = ratingsTooltip;
+  $("#chart-status").src = charts.status;
+}
+
 export function setPath(filepath) {
   let fileparts = filepath.split("/");
   
