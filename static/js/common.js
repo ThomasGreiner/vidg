@@ -1,6 +1,5 @@
-export function $(selector) {
-  return document.querySelector(selector);
-}
+let postActions = new Set(["empty-trash", "rate-down", "rate-up", "view",
+    "view-all"]);
 
 HTMLElement.prototype.create = function(tagName) {
   var element = document.createElement(tagName);
@@ -8,34 +7,33 @@ HTMLElement.prototype.create = function(tagName) {
   return element;
 };
 
-var postActions = ["empty-trash", "rate-down", "rate-up", "view", "view-all"];
-export function request(action, params = {}) {
+export function $(selector) {
+  return document.querySelector(selector);
+}
+
+export async function request(action, params = {}) {
   if (!action)
     return;
   
-  var method = (postActions.indexOf(action) > -1) ? "POST" : "GET";
-  var url = "/" + action;
-  var param = [];
-  for (var i in params) {
-    param.push(i + "=" + encodeURIComponent(params[i]));
-  }
-  param = param.join("&");
-  
-  if (method == "GET") {
-    url += "?" + param;
-    param = null;
+  let url = `/${action}`;
+  let qs = new URLSearchParams();
+  for (let name in params) {
+    qs.append(name, params[name]);
   }
   
-  var xhr = new XMLHttpRequest();
-  xhr.open(method, url, true);
-  xhr.addEventListener("readystatechange", function(ev) {
-    if (xhr.readyState == 4) {
-      var evName = (xhr.status == 200) ? "actionsuccess" : "actionerror";
-      var data = xhr.responseText && JSON.parse(xhr.responseText);
-      document.dispatchEvent(new CustomEvent(evName, {detail: data}));
-    }
-  }, false);
-  xhr.send(param);
+  let resp;
+  if (postActions.has(action)) {
+    resp = await fetch(url, {
+      method: "POST",
+      body: qs.toString()
+    });
+  } else {
+    resp = await fetch(`${url}?${qs}`);
+  }
+  
+  let evName = (resp.status === 200) ? "actionsuccess" : "actionerror";
+  let data = await resp.json();
+  document.dispatchEvent(new CustomEvent(evName, {detail: data}));
 }
 
 export function registerActions(startAction, keyMap) {
