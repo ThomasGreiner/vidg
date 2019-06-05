@@ -2,7 +2,7 @@ export function $(selector) {
   return document.querySelector(selector);
 }
 
-HTMLElement.prototype.create = function (tagName) {
+HTMLElement.prototype.create = function(tagName) {
   var element = document.createElement(tagName);
   this.appendChild(element);
   return element;

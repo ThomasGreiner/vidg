@@ -4,24 +4,24 @@ import {setPlayer} from "./player.js";
 import {setPath, setStats} from "./ui.js";
 
 function onFileData(ev) {
-  var {file, ranges, stats} = ev.detail;
+  var {file, ranges, status} = ev.detail;
   
-  let ratings = Object.keys(stats.ratings)
+  let ratings = Object.keys(status.ratings)
     .sort()
-    .map((rating) => `${rating}: ${formatSize(stats.ratings[rating].size)} | ${stats.ratings[rating].count}`)
+    .map((rating) => `${rating}: ${formatSize(status.ratings[rating].size)} | ${status.ratings[rating].count}`)
     .join("\n");
   
-  $("#distribution").src = stats.distributionImage;
+  $("#distribution").src = status.distributionImage;
   $("#distribution").title = ratings;
-  $("#status").src = stats.statusImage;
+  $("#status").src = status.statusImage;
   
   setPath(file.path);
   setPlayer(file.id, file.preview);
   setStats(file.stats, ranges);
   
   document.body.dataset.error = false;
-  document.body.dataset.hasPrev = stats.hasPrev;
-  document.body.dataset.hasNext = stats.hasNext;
+  document.body.dataset.hasPrev = status.hasPrev;
+  document.body.dataset.hasNext = status.hasNext;
   document.body.dataset.rating = file.rating;
 }
 document.addEventListener("actionsuccess", onFileData);
