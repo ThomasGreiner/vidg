@@ -22,6 +22,12 @@ export async function request(action, params = {}) {
   }
   
   let evName = (resp.status === 200) ? "actionsuccess" : "actionerror";
-  let data = await resp.json();
+  let data;
+  try {
+    data = await resp.json();
+  }
+  catch (ex) {
+    // Response contains no data
+  }
   document.dispatchEvent(new CustomEvent(evName, {detail: data}));
 }
