@@ -53,4 +53,4 @@
 
 ## Playlist
 
-- **GET** `/playlist` - Retrieve playlist based on current list
+- **GET** `/playlist` - Retrieve playlist (m3u8) based on current list

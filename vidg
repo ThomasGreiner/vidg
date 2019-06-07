@@ -65,7 +65,7 @@ if (argv.server || "query" in argv || "rating" in argv) {
   
   if ("query" in argv || "rating" in argv) {
     db.setPlaylist({query: argv.query, rating: argv.rating});
-    result = result.then(() => open(`http://localhost:${argv.port}/playlist/videos.m3u8`, "vlc"));
+    result = result.then(() => open(`http://localhost:${argv.port}/playlist`, "vlc"));
   }
 }
 result.catch((err) => console.error(`Bootstrap error: ${err.stack}`));
