@@ -1,5 +1,4 @@
-let postActions = new Set(["empty-trash", "rate-down", "rate-up", "view",
-    "view-all"]);
+let postActions = new Set(["empty-trash", "view-all"]);
 
 function dispatchEvent(status, data) {
   let name = (status === 200) ? "actionsuccess" : "actionerror";
