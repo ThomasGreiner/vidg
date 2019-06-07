@@ -4,7 +4,7 @@ export function $(selector) {
   return document.querySelector(selector);
 }
 
-export function registerActions(startAction, keyMap) {
+export function registerActions(keyMap) {
   window.addEventListener("keyup", function(ev) {
     var key = ev.key;
     if (ev.ctrlKey) {
@@ -31,6 +31,4 @@ export function registerActions(startAction, keyMap) {
   document.addEventListener("click", function(ev) {
     request(ev.target.dataset.action);
   }, false);
-  
-  request(startAction);
 }

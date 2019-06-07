@@ -1,4 +1,4 @@
-import {request} from "./api.js";
+import {api, request} from "./api.js";
 import {$} from "./common.js";
 import {setPlayer} from "./player.js";
 import {setCharts, setPath, setStats} from "./ui.js";
@@ -31,3 +31,5 @@ function onFileData(ev) {
   document.body.dataset.rating = file.rating;
 }
 document.addEventListener("actionsuccess", onFileData);
+
+api.get("/file");

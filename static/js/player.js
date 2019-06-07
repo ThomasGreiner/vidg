@@ -17,7 +17,7 @@ player.addEventListener("error", () => {
   document.webkitExitFullscreen();
 });
 
-registerActions("current", {
+registerActions({
   "ArrowDown": "rate-down",
   "Enter": () => {
     if (player.paused) {
