@@ -1,20 +1,25 @@
 let postActions = new Set(["empty-trash", "rate-down", "rate-up", "view",
     "view-all"]);
 
-function dispatchEvent(name, data) {
+function dispatchEvent(status, data) {
+  let name = (status === 200) ? "actionsuccess" : "actionerror";
   document.dispatchEvent(new CustomEvent(name, {detail: data}));
 }
 
 async function get(endpoint) {
   let resp = await fetch(endpoint);
   let data = await resp.json();
-  dispatchEvent(
-    (resp.status === 200) ? "actionsuccess" : "actionerror",
-    data
-  );
+  dispatchEvent(resp.status, data);
 }
 
-export const api = {get};
+async function post(endpoint) {
+  await fetch(endpoint, {
+    method: "POST",
+    body: null
+  });
+}
+
+export const api = {get, post};
 
 export async function request(action, params = {}) {
   if (!action)
@@ -36,7 +41,6 @@ export async function request(action, params = {}) {
     resp = await fetch(`${url}?${qs}`);
   }
   
-  let evName = (resp.status === 200) ? "actionsuccess" : "actionerror";
   let data;
   try {
     data = await resp.json();
@@ -44,5 +48,5 @@ export async function request(action, params = {}) {
   catch (ex) {
     // Response contains no data
   }
-  dispatchEvent(evName, data);
+  dispatchEvent(resp.status, data);
 }

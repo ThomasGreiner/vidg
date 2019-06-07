@@ -13,6 +13,7 @@
 ## File
 
 - **GET** `/file`
+  - **string** [id] - Passed for unique URL when requesting video
   - **string** [dir]
     - next
     - prev

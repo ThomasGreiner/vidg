@@ -5,7 +5,7 @@ let player = $("#player");
 
 export function setPlayer(id, poster) {
   player.poster = poster;
-  player.src = "/file?type=video";
+  player.src = `/file?id=${id}&type=video`;
 }
 
 player.addEventListener("ended", () => {
@@ -64,7 +64,9 @@ registerActions({
       player.currentTime += 10;
     }
   },
-  "CTRL+Enter": "view",
+  "CTRL+Enter": () => {
+    api.post("/file/open");
+  },
   "SHIFT+ArrowLeft": () => {
     if (!player.paused) {
       player.currentTime -= 3;
