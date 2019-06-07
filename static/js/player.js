@@ -5,7 +5,7 @@ let player = $("#player");
 
 export function setPlayer(id, poster) {
   player.poster = poster;
-  player.src = `/video?id=${id}`;
+  player.src = "/file?type=video";
 }
 
 player.addEventListener("ended", () => {
