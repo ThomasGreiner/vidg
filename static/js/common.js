@@ -1,4 +1,4 @@
-import {request} from "./api.js";
+import {api, request} from "./api.js";
 
 export function $(selector) {
   return document.querySelector(selector);
@@ -28,7 +28,17 @@ export function registerActions(keyMap) {
     }
   }, true);
   
-  document.addEventListener("click", function(ev) {
-    request(ev.target.dataset.action);
+  document.addEventListener("click", async (ev) => {
+    let {dataset} = ev.target;
+    
+    if ("rest" in dataset) {
+      let [method, endpoint] = dataset.rest.split(":", 2);
+      await api[method](endpoint);
+      if (method !== "get") {
+        await api.get("/file");
+      }
+    } else if ("action" in dataset) {
+      request(dataset.action);
+    }
   }, false);
 }

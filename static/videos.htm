@@ -123,20 +123,24 @@
   <!-- TODO: unset if error -->
   <div id="actions">
     <button
+      id="prev"
       class="btn btn-default glyphicon glyphicon-chevron-left"
-      data-action="prev">
+      data-rest="get:/file?dir=prev">
     </button>
     <button
+      id="rating-up"
       class="btn btn-success glyphicon glyphicon-arrow-up"
-      data-action="rate-up">
+      data-rest="patch:/file/rating?dir=up">
     </button>
     <button
+      id="rating-down"
       class="btn btn-danger glyphicon glyphicon-arrow-down"
-      data-action="rate-down">
+      data-rest="patch:/file/rating?dir=down">
     </button>
     <button
+      id="next"
       class="btn btn-default glyphicon glyphicon-chevron-right"
-      data-action="next">
+      data-rest="get:/file?dir=next">
     </button>
   </div>
 </main>
