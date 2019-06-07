@@ -12,14 +12,19 @@ async function get(endpoint) {
   dispatchEvent(resp.status, data);
 }
 
+async function patch(endpoint) {
+  await fetch(endpoint, {method: "PATCH"});
+}
+
 async function post(endpoint) {
   await fetch(endpoint, {
     method: "POST",
+    // TODO: NYI
     body: null
   });
 }
 
-export const api = {get, post};
+export const api = {get, patch, post};
 
 export async function request(action, params = {}) {
   if (!action)

@@ -22,7 +22,7 @@
   - **boolean** [unrated=false]
 - **POST** `/file/open`
 - **PATCH** `/file/rating`
-  - **string** direction
+  - **string** dir
     - down
     - up
 

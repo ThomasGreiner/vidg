@@ -18,7 +18,10 @@ player.addEventListener("error", () => {
 });
 
 registerActions({
-  "ArrowDown": "rate-down",
+  "ArrowDown": async () => {
+    await api.patch("/file/rating?dir=down");
+    await api.get("/file");
+  },
   "Enter": () => {
     if (player.paused) {
       player.webkitRequestFullscreen();
@@ -42,7 +45,10 @@ registerActions({
       player.currentTime += 60;
     }
   },
-  "ArrowUp": () => request("rate-up"),
+  "ArrowUp": async () => {
+    await api.patch("/file/rating?dir=up");
+    await api.get("/file");
+  },
   " ": () => {
     if (player.paused) {
       player.play();
