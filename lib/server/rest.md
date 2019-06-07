@@ -1,54 +1,55 @@
 # REST API
 
-## GET
+- [Static](#static)
+- [List](#list)
+- [Playlist](#playlist)
+- [Video](#video)
 
-### Static
+## Static
 
-- /
-- /static/
+- **GET** `/`
+- **GET** `/static/*`
 
-### Navigation
+## File
 
-- /current
-- /next
-- /next-unrated
-- /prev
-- /prev-unrated
+- **GET** `/file`
+  - **string** [dir]
+    - next
+    - prev
+  - **string** [type]
+    - video
+  - **boolean** [unrated=false]
+- **POST** `/file/open`
+- **PATCH** `/file/rating`
+  - **string** direction
+    - down
+    - up
 
-### Video
+## List
 
-- /video
-  - **string** id
+- **PUT** `/list`
+  - **string[]** [filter]
+    - **number** [rating]
+    - **string** [similar]
+      - duration
+      - size
+    - **string** [filepath]
+  - **string[]** [sort=rating:asc,size:desc]
+    - **string** key
+      - bitrate
+      - created
+      - duration
+      - random
+      - rating
+      - size
+    - **string** dir
+      - asc
+      - desc
+- **DELETE** `/list`
+  - **string[]** filter
+    - **number** rating
+      - -1
 
-### Playlists
+## Playlist
 
-- /playlist/all.m3u8
-- /playlist/videos.m3u8
-
-### Filter list
-
-- /filter
-- /filter-rating
-  - **number|"any"** value
-- /filter-sameduration
-  - **boolean** [value]
-- /filter-samesize
-  - **boolean** [value]
-- /filter-search
-  - **string** [value]
-
-### Sort list
-
-- /sort
-  - **string** value
-    - random
-    - *-asc
-    - *-desc
-
-## POST
-
-- /empty-trash
-- /rate-down
-- /rate-up
-- /view
-- /view-all
+- **GET** `/playlist` - Retrieve playlist based on current list
