@@ -1,8 +1,6 @@
 import {api, request} from "./api.js";
 
-export function $(selector) {
-  return document.querySelector(selector);
-}
+export const $ = (selector) => document.querySelector(selector);
 
 export function registerActions(keyMap) {
   window.addEventListener("keyup", function(ev) {
@@ -18,14 +16,7 @@ export function registerActions(keyMap) {
     if (!action)
       return;
     
-    switch (typeof action) {
-      case "function":
-        action();
-        break;
-      case "string":
-        request(action);
-        break;
-    }
+    action();
   }, true);
   
   document.addEventListener("click", async (ev) => {
