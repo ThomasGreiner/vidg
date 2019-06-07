@@ -1,4 +1,4 @@
-import {request} from "./api.js";
+import {api, request} from "./api.js";
 import {$, registerActions} from "./common.js";
 
 let player = $("#player");
@@ -25,19 +25,19 @@ registerActions({
       player.play();
     } else {
       document.webkitExitFullscreen();
-      request("current");
+      api.get("/file");
     }
   },
   "ArrowLeft": () => {
     if (player.paused) {
-      request("prev");
+      api.get("/file?dir=prev");
     } else {
       player.currentTime -= 60;
     }
   },
   "ArrowRight": () => {
     if (player.paused) {
-      request("next");
+      api.get("/file?dir=next");
     } else {
       player.currentTime += 60;
     }
@@ -52,14 +52,14 @@ registerActions({
   },
   "CTRL+ArrowLeft": () => {
     if (player.paused) {
-      request("prev-unrated");
+      api.get("/file?dir=prev&unrated=true");
     } else {
       player.currentTime -= 10;
     }
   },
   "CTRL+ArrowRight": () => {
     if (player.paused) {
-      request("next-unrated");
+      api.get("/file?dir=next&unrated=true");
     } else {
       player.currentTime += 10;
     }
