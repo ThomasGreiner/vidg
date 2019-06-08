@@ -1,5 +1,5 @@
 import api from "./api.js";
-import {$, registerActions} from "./common.js";
+import {$} from "./common.js";
 
 let player = $("#player");
 
@@ -17,7 +17,7 @@ player.addEventListener("error", () => {
   document.webkitExitFullscreen();
 });
 
-registerActions({
+export let keyMap = {
   "ArrowDown": async () => {
     await api.patch("/file/rating?dir=down");
     await api.get("/file");
@@ -83,4 +83,4 @@ registerActions({
       player.currentTime += 3;
     }
   }
-});
+};
