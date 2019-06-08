@@ -1,14 +1,19 @@
 let postActions = new Set(["empty-trash"]);
 
-function dispatchEvent(status, data) {
-  let name = (status === 200) ? "actionsuccess" : "actionerror";
-  document.dispatchEvent(new CustomEvent(name, {detail: data}));
+async function dispatchEvent(resp) {
+  let ev;
+  if (resp.status === 200) {
+    let data = await resp.json();
+    ev = new CustomEvent("actionsuccess", {detail: data});
+  } else {
+    ev = new CustomEvent("actionerror");
+  }
+  document.dispatchEvent(ev);
 }
 
 async function get(endpoint) {
   let resp = await fetch(endpoint);
-  let data = await resp.json();
-  dispatchEvent(resp.status, data);
+  await dispatchEvent(resp);
 }
 
 async function patch(endpoint) {
@@ -53,12 +58,5 @@ export async function request(action, params = {}) {
     resp = await fetch(`${url}?${qs}`);
   }
   
-  let data;
-  try {
-    data = await resp.json();
-  }
-  catch (ex) {
-    // Response contains no data
-  }
-  dispatchEvent(resp.status, data);
+  await dispatchEvent(resp);
 }
