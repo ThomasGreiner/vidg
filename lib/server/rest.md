@@ -46,9 +46,8 @@
       - asc
       - desc
 - **DELETE** `/list`
-  - **string[]** filter
-    - **number** rating
-      - -1
+  - **number** rating
+    - -1
 
 ## Playlist
 

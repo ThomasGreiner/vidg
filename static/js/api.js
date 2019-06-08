@@ -11,6 +11,10 @@ async function dispatchEvent(resp) {
   document.dispatchEvent(ev);
 }
 
+async function del(endpoint) {
+  await fetch(endpoint, {method: "DELETE"});
+}
+
 async function get(endpoint) {
   let resp = await fetch(endpoint);
   await dispatchEvent(resp);
@@ -36,7 +40,7 @@ async function put(endpoint, data) {
   });
 }
 
-export const api = {get, patch, post, put};
+export const api = {delete: del, get, patch, post, put};
 
 export async function request(action, params = {}) {
   if (!action)
