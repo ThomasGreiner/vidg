@@ -29,13 +29,12 @@
 ## List
 
 - **PUT** `/list`
-  - **string[]** [filter]
+  - **Object** [filter]
     - **number** [rating]
-    - **string** [similar]
-      - duration
-      - size
-    - **string** [filepath]
-  - **string[]** [sort=rating:asc,size:desc]
+    - **boolean** [sameduration]
+    - **boolean** [samesize]
+    - **string** [text]
+  - **Object[]** [sort=[rating:asc,size:desc]]
     - **string** key
       - bitrate
       - created

@@ -10,26 +10,26 @@ async function onChange(ev) {
   let {name} = target;
   let value = (target.type == "checkbox") ? target.checked : target.value;
   
-  // TODO: remove
-  if (name !== "sort") {
-    request(name, {value});
-    target.blur();
-    return;
-  }
-  
   if (name === "sort") {
+    delete listParams.sort;
+    
     let [key, dir] = value.split("-", 2);
     listParams.sort = {key, dir};
   } else {
-    // TODO: unused
     let [type, key] = name.split("-", 2);
-    if (value === "any") {
+    if (!(type in listParams)) {
+      listParams[type] = {};
+    }
+    
+    if (!value || value === "any") {
       delete listParams[type][key];
-    } else {
-      if (!(type in listParams)) {
-        listParams[type] = {};
+      if (!Object.keys(listParams[type]).length) {
+        delete listParams[type];
       }
-      
+    } else {
+      if (key === "rating") {
+        value = parseInt(value, 10);
+      }
       listParams[type][key] = value;
     }
   }
