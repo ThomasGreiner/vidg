@@ -23,7 +23,15 @@ async function post(endpoint) {
   });
 }
 
-export const api = {get, patch, post};
+async function put(endpoint, data) {
+  await fetch(endpoint, {
+    method: "PUT",
+    headers: {"Content-Type": "application/json"},
+    body: JSON.stringify(data)
+  });
+}
+
+export const api = {get, patch, post, put};
 
 export async function request(action, params = {}) {
   if (!action)
