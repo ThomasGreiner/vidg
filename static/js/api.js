@@ -1,23 +1,18 @@
-let postActions = new Set(["empty-trash"]);
-
-async function dispatchEvent(resp) {
-  let ev;
-  if (resp.status === 200) {
-    let data = await resp.json();
-    ev = new CustomEvent("actionsuccess", {detail: data});
-  } else {
-    ev = new CustomEvent("actionerror");
-  }
-  document.dispatchEvent(ev);
-}
-
 async function del(endpoint) {
   await fetch(endpoint, {method: "DELETE"});
 }
 
 async function get(endpoint) {
   let resp = await fetch(endpoint);
-  await dispatchEvent(resp);
+  
+  let ev;
+  if (resp.status === 200) {
+    let data = await resp.json();
+    ev = new CustomEvent("filedata", {detail: data});
+  } else {
+    ev = new CustomEvent("fileerror");
+  }
+  document.dispatchEvent(ev);
 }
 
 async function patch(endpoint) {

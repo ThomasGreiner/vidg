@@ -40,10 +40,10 @@ async function onChange(ev) {
 }
 document.addEventListener("change", onChange);
 
-function onError(ev) {
+function onFileError(ev) {
   document.body.dataset.error = true;
 }
-document.addEventListener("actionerror", onError);
+document.addEventListener("fileerror", onFileError);
 
 function onFileData(ev) {
   let {charts, file, ranges, ratings, status} = ev.detail;
@@ -58,6 +58,6 @@ function onFileData(ev) {
   document.body.dataset.hasNext = status.hasNext;
   document.body.dataset.rating = file.rating;
 }
-document.addEventListener("actionsuccess", onFileData);
+document.addEventListener("filedata", onFileData);
 
 api.get("/file");
