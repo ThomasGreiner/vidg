@@ -1,4 +1,4 @@
-import {api, request} from "./api.js";
+import api from "./api.js";
 
 export const $ = (selector) => document.querySelector(selector);
 
@@ -28,8 +28,6 @@ export function registerActions(keyMap) {
       if (method !== "get") {
         await api.get("/file");
       }
-    } else if ("action" in dataset) {
-      request(dataset.action);
     }
   }, false);
 }

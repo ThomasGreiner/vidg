@@ -25,11 +25,7 @@ async function patch(endpoint) {
 }
 
 async function post(endpoint) {
-  await fetch(endpoint, {
-    method: "POST",
-    // TODO: NYI
-    body: null
-  });
+  await fetch(endpoint, {method: "POST"});
 }
 
 async function put(endpoint, data) {
@@ -40,27 +36,7 @@ async function put(endpoint, data) {
   });
 }
 
-export const api = {delete: del, get, patch, post, put};
-
-export async function request(action, params = {}) {
-  if (!action)
-    return;
-  
-  let url = `/${action}`;
-  let qs = new URLSearchParams();
-  for (let name in params) {
-    qs.append(name, params[name]);
-  }
-  
-  let resp;
-  if (postActions.has(action)) {
-    resp = await fetch(url, {
-      method: "POST",
-      body: qs.toString()
-    });
-  } else {
-    resp = await fetch(`${url}?${qs}`);
-  }
-  
-  await dispatchEvent(resp);
-}
+export default {
+  delete: del,
+  get, patch, post, put
+};

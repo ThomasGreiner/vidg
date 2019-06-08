@@ -1,4 +1,4 @@
-import {api, request} from "./api.js";
+import api from "./api.js";
 import {$} from "./common.js";
 import {setPlayer} from "./player.js";
 import {setCharts, setPath, setStats} from "./ui.js";
