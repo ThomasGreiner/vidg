@@ -6,6 +6,10 @@ function getPreview(path) {
 exports.getPreview = getPreview;
 
 class ShotMaker {
+  static getColors() {
+    return "000000000000000000000000000000";
+  }
+  
   constructor(path) {
     this._path = path;
   }
