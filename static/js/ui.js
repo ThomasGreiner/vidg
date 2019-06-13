@@ -12,6 +12,16 @@ export function setCharts(charts, ratings) {
   $("#chart-status").src = charts.status;
 }
 
+export function setColors(colors) {
+  let container = $("#colors");
+  container.innerHTML = "";
+  for (let color of colors) {
+    let div = document.createElement("div");
+    div.style = `height: 50px; background-color: #${color};`;
+    container.appendChild(div);
+  }
+}
+
 export function setPath(filepath) {
   let fileparts = filepath.split("/");
   
