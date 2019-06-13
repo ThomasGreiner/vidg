@@ -31,6 +31,7 @@
 - **PUT** `/list`
   - **Object** [filter]
     - **number** [rating]
+    - **boolean** [samecolors]
     - **boolean** [sameduration]
     - **boolean** [samesize]
     - **string** [text]
