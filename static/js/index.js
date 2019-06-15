@@ -1,7 +1,7 @@
 import api from "./api.js";
 import {$} from "./common.js";
 import {keyMap, setPlayer} from "./player.js";
-import {setCharts, setPath, setStats} from "./ui.js";
+import {setCharts, setColors, setPath, setStats} from "./ui.js";
 
 let listParams = {};
 
@@ -57,6 +57,7 @@ function onFileData(ev) {
   let {charts, file, ranges, ratings, status} = ev.detail;
   
   setCharts(charts, ratings);
+  setColors(file.stats.colors);
   setPath(file.path);
   setPlayer(file.id, file.preview);
   setStats(file.stats, ranges);

@@ -12,8 +12,9 @@ vidg - the hot-or-not for stored videos
 ## Starting server
 
 ```
-vidg [-h][-p <port>][-r <min-rating>][-s][-u|-U] <input>
+vidg [-c][-h][-p <port>][-r <min-rating>][-s][-u|-U] <input>
 
+-c Update dominant colors
 -h Show usage
 -p Server port (default: 8080)
 -r Play media by rating

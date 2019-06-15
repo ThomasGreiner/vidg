@@ -47,6 +47,9 @@
     
     <!-- TODO: Change from filter options to view modes to include sorting -->
     <label>
+      <input type="checkbox" name="filter-samecolors"> same colors
+    </label>
+    <label>
       <input type="checkbox" name="filter-sameduration"> same duration
     </label>
     <label>
@@ -65,6 +68,11 @@
       <input type="radio" name="sort" value="bitrate-asc">
       <input type="radio" name="sort" value="bitrate-desc">
       Bitrate
+    </div>
+    <div>
+      <input type="radio" name="sort" value="colors-asc">
+      <input type="radio" name="sort" value="colors-desc">
+      Colors
     </div>
     <div>
       <input type="radio" name="sort" value="created-asc">
@@ -151,6 +159,8 @@
     <div id="created"></div>
     <div id="path"></div>
   </fieldset>
+  
+  <fieldset id="colors"></fieldset>
 </aside>
 
 </body>
