@@ -4,8 +4,8 @@
   <title>vidg</title>
   <meta charset="utf-8">
   <link rel="stylesheet" href="/static/bootstrap/css/bootstrap.min.css">
-  <link rel="stylesheet" href="/static/css/videos.css">
-  <script type="module" src="/static/js/videos.js" defer></script>
+  <link rel="stylesheet" href="/static/css/index.css">
+  <script type="module" src="/static/js/index.js" defer></script>
 </head>
 <body>
 
@@ -17,7 +17,7 @@
   <div class="row">
     <button
       class="btn btn-danger glyphicon glyphicon-trash"
-      data-action="empty-trash">
+      data-rest="delete:/list?rating=-1">
     </button>
   </div>
   
@@ -25,7 +25,7 @@
     <legend>Filter</legend>
     
     <label>
-      <input name="filter-search" type="search" value="" placeholder="search…">
+      <input name="filter-text" type="search" value="" placeholder="search…">
     </label>
     
     <fieldset id="filter-rating">
@@ -45,17 +45,13 @@
       </div>
     </fieldset>
     
+    <!-- TODO: Change from filter options to view modes to include sorting -->
     <label>
       <input type="checkbox" name="filter-sameduration"> same duration
     </label>
     <label>
       <input type="checkbox" name="filter-samesize"> same size
     </label>
-    
-    <button
-      class="btn btn-default glyphicon glyphicon-play"
-      data-action="view-all">
-    </button>
   </fieldset>
   
   <fieldset id="sort" class="row">
@@ -113,7 +109,6 @@
     </div>
   </header>
   
-  <!-- obsolete: data-action="view" -->
   <video id="player" preload="none" controls></video>
   
   <div id="error">
@@ -123,20 +118,24 @@
   <!-- TODO: unset if error -->
   <div id="actions">
     <button
+      id="prev"
       class="btn btn-default glyphicon glyphicon-chevron-left"
-      data-action="prev">
+      data-rest="get:/file?dir=prev">
     </button>
     <button
+      id="rating-up"
       class="btn btn-success glyphicon glyphicon-arrow-up"
-      data-action="rate-up">
+      data-rest="patch:/file/rating?dir=up">
     </button>
     <button
+      id="rating-down"
       class="btn btn-danger glyphicon glyphicon-arrow-down"
-      data-action="rate-down">
+      data-rest="patch:/file/rating?dir=down">
     </button>
     <button
+      id="next"
       class="btn btn-default glyphicon glyphicon-chevron-right"
-      data-action="next">
+      data-rest="get:/file?dir=next">
     </button>
   </div>
 </main>

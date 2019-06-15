@@ -1,11 +1,11 @@
-import {request} from "./api.js";
-import {$, registerActions} from "./common.js";
+import api from "./api.js";
+import {$} from "./common.js";
 
 let player = $("#player");
 
 export function setPlayer(id, poster) {
   player.poster = poster;
-  player.src = `/video?id=${id}`;
+  player.src = `/file?id=${id}&type=video`;
 }
 
 player.addEventListener("ended", () => {
@@ -17,32 +17,38 @@ player.addEventListener("error", () => {
   document.webkitExitFullscreen();
 });
 
-registerActions("current", {
-  "ArrowDown": "rate-down",
+export let keyMap = {
+  "ArrowDown": async () => {
+    await api.patch("/file/rating?dir=down");
+    await api.get("/file");
+  },
   "Enter": () => {
     if (player.paused) {
       player.webkitRequestFullscreen();
       player.play();
     } else {
       document.webkitExitFullscreen();
-      request("current");
+      api.get("/file");
     }
   },
   "ArrowLeft": () => {
     if (player.paused) {
-      request("prev");
+      api.get("/file?dir=prev");
     } else {
       player.currentTime -= 60;
     }
   },
   "ArrowRight": () => {
     if (player.paused) {
-      request("next");
+      api.get("/file?dir=next");
     } else {
       player.currentTime += 60;
     }
   },
-  "ArrowUp": () => request("rate-up"),
+  "ArrowUp": async () => {
+    await api.patch("/file/rating?dir=up");
+    await api.get("/file");
+  },
   " ": () => {
     if (player.paused) {
       player.play();
@@ -52,19 +58,21 @@ registerActions("current", {
   },
   "CTRL+ArrowLeft": () => {
     if (player.paused) {
-      request("prev-unrated");
+      api.get("/file?dir=prev&unrated=true");
     } else {
       player.currentTime -= 10;
     }
   },
   "CTRL+ArrowRight": () => {
     if (player.paused) {
-      request("next-unrated");
+      api.get("/file?dir=next&unrated=true");
     } else {
       player.currentTime += 10;
     }
   },
-  "CTRL+Enter": "view",
+  "CTRL+Enter": () => {
+    api.post("/file/open");
+  },
   "SHIFT+ArrowLeft": () => {
     if (!player.paused) {
       player.currentTime -= 3;
@@ -75,4 +83,4 @@ registerActions("current", {
       player.currentTime += 3;
     }
   }
-});
+};
