@@ -17,7 +17,7 @@ const fileC = {id: 3, path: "c.mp4", stats: {}};
 async function getMock(knownFiles, foundFiles, opts = {}) {
   const {MetaDataSync} = requireInject("../../lib/sync", {
     fs: fsMock({[baseDir]: foundFiles}),
-    "../../lib/shot": shotMock
+    "../../lib/sync/shot": shotMock
   });
   
   let db = dbMock({[dbDir]: knownFiles}).open(dbDir);
