@@ -5,12 +5,12 @@ const path = require("path");
 const fs = new Map();
 const stats = new Map();
 
-function lstat(filepath, callback) {
-  callback(null, stats.get(filepath));
+async function lstat(filepath) {
+  return stats.get(filepath);
 }
 
-function readdir(filepath, callback) {
-  callback(null, fs.get(filepath));
+async function readdir(filepath) {
+  return fs.get(filepath);
 }
 
 module.exports = (config) => {
@@ -29,5 +29,5 @@ module.exports = (config) => {
     fs.set(dirPath, filenames);
   }
   
-  return {lstat, readdir};
+  return {promises: {lstat, readdir}};
 };
