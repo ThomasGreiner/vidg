@@ -72,6 +72,14 @@ Run tests via `npm test` or `node test`.
 
 ## Scripts
 
+### Audio x100
+
+`audio100x.sh <filename> <extension>`
+
+Create new file from existing file with 100-times amplified volume.
+
+e.g. `audio100x.sh example mp4`
+
 ### Cut
 
 `cut.js [-h] <file> <start> <end>`
