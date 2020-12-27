@@ -69,3 +69,13 @@ vidg [-c][-h][-p <port>][-r <min-rating>][-s][-u|-U] <input>
 ## Tests
 
 Run tests via `npm test` or `node test`.
+
+## Scripts
+
+### Cut
+
+`cut.js [-h] <file> <start> <end>`
+
+Create new file from existing file based on given time range.
+
+e.g. `cut.js ./example.mp4 00:00:15 01:20:30`
