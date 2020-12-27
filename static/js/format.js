@@ -6,13 +6,18 @@ export function formatDate(timestamp) {
 }
 
 export function formatTime(seconds) {
-  return new Intl.DateTimeFormat(undefined, {
+  let str = new Intl.DateTimeFormat(undefined, {
     hour: "2-digit",
     minute: "2-digit",
     second: "2-digit",
     hour12: false,
     timeZone: "UTC"
   }).format(seconds * 1000);
+  
+  // Chromium 80 formats 0 as 24:00:00
+  str = str.replace(/^24:/, "00:");
+  
+  return str;
 }
 
 export function formatSize(size) {
