@@ -80,6 +80,14 @@ Create new file from existing file with 100-times amplified volume.
 
 e.g. `audio100x.sh example mp4`
 
+### Concatenate
+
+`concat.js [-h] <directory>`
+
+Create new file from files in given directory.
+
+e.g. `concat.js ./example/`
+
 ### Cut
 
 `cut.js [-h] <file> <start> <end>`
