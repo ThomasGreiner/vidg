@@ -87,3 +87,11 @@ e.g. `audio100x.sh example mp4`
 Create new file from existing file based on given time range.
 
 e.g. `cut.js ./example.mp4 00:00:15 01:20:30`
+
+### Strip audio
+
+`strip-audio.js [-h] <file>`
+
+Create new file from existing file but without audio channel.
+
+e.g. `strip-audio.js ./example.mp4`
