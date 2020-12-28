@@ -47,13 +47,16 @@
     
     <!-- TODO: Change from filter options to view modes to include sorting -->
     <label>
-      <input type="checkbox" name="filter-samecolors"> same colors
+      <input type="radio" name="filter-duplicate" checked> all
     </label>
     <label>
-      <input type="checkbox" name="filter-sameduration"> same duration
+      <input type="radio" name="filter-duplicate" value="colors"> same colors
     </label>
     <label>
-      <input type="checkbox" name="filter-samesize"> same size
+      <input type="radio" name="filter-duplicate" value="duration"> same duration
+    </label>
+    <label>
+      <input type="radio" name="filter-duplicate" value="size"> same size
     </label>
   </fieldset>
   

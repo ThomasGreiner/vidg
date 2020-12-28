@@ -30,10 +30,11 @@
 
 - **PUT** `/list`
   - **Object** [filter]
+    - **string** [duplicate]
+      - colors
+      - duration
+      - size
     - **number** [rating]
-    - **boolean** [samecolors]
-    - **boolean** [sameduration]
-    - **boolean** [samesize]
     - **string** [text]
   - **Object[]** [sort=[rating:asc,size:desc]]
     - **string** key
