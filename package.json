@@ -1,6 +1,7 @@
 {
   "private": true,
   "scripts": {
+    "lint": "eslint lib/**/*.js scripts/**/*.js static/**/*.js test/**/*.js vidg",
     "test": "node test"
   },
   "dependencies": {
@@ -13,6 +14,7 @@
   },
   "devDependencies": {
     "chai": "^4.2.0",
+    "eslint": "^7.16.0",
     "mocha": "^5.2.0",
     "require-inject": "^1.4.3"
   }

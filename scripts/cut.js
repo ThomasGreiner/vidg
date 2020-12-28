@@ -23,7 +23,7 @@ const [filepath, start, end] = argv._;
 
 function getOutputFilepath(inputFilepath, start, end) {
   let {dir, name, ext} = path.parse(inputFilepath);
-  return path.join(dir, `${name}.cut-${start}-${end}${ext}`);;
+  return path.join(dir, `${name}.cut-${start}-${end}${ext}`);
 }
 
 // TODO: allow shortened syntax (e.g. 5:07 instead of 00:05:07)

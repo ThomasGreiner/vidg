@@ -1,5 +1,4 @@
 import api from "./api.js";
-import {$} from "./common.js";
 import {keyMap, setPlayer} from "./player.js";
 import {setCharts, setColors, setPath, setStats} from "./ui.js";
 

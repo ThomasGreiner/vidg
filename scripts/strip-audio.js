@@ -23,7 +23,7 @@ const [filepath] = argv._;
 
 function getOutputFilepath(inputFilepath) {
   let {dir, name, ext} = path.parse(inputFilepath);
-  return path.join(dir, `${name}.noaudio${ext}`);;
+  return path.join(dir, `${name}.noaudio${ext}`);
 }
 
 let ffmpeg = spawn("ffmpeg", [
