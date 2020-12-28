@@ -10,11 +10,7 @@ const database = require("./lib/db");
 const MetaDataSync = require("./lib/sync").MetaDataSync;
 
 const argv = optimist
-    .usage("$0 [-h][-q <query>][-r <min-rating>][-s][-u|-U] <input>".yellow)
-    .option("c", {
-      alias: "colors",
-      description: "Update dominant colors"
-    })
+    .usage("$0 [-h][-q <query>][-r <min-rating>][-s] <input>".yellow)
     .option("h", {
       alias: "help",
       description: "Show usage"
@@ -36,15 +32,7 @@ const argv = optimist
       alias: "server",
       description: "Start server"
     })
-    .option("u", {
-      alias: "update",
-      description: "Update meta data and previews"
-    })
-    .option("U", {
-      alias: "forceupdate",
-      description: "Force update meta data and previews (overwrite existing)"
-    })
-    .boolean(["c", "h", "s", "u", "U"])
+    .boolean(["h", "s"])
     .check((argv) => {
       if (argv.help)
         throw "";
@@ -57,12 +45,7 @@ const inputDir = argv._[0];
 
 let db = database.open(inputDir);
 let metaSync = new MetaDataSync(db);
-let result = metaSync.sync({
-  forceUpdate: argv.forceupdate,
-  inputDir,
-  update: argv.update,
-  updateColors: argv.colors
-});
+let result = metaSync.sync(inputDir);
 if (argv.server || "query" in argv || "rating" in argv) {
   const Server = require("./lib/server");
   let server = new Server(db);

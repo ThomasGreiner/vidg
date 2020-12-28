@@ -12,15 +12,12 @@ vidg - the hot-or-not for stored videos
 ## Starting server
 
 ```
-vidg [-c][-h][-p <port>][-r <min-rating>][-s][-u|-U] <input>
+vidg [-h][-p <port>][-r <min-rating>][-s] <input>
 
--c Update dominant colors
 -h Show usage
 -p Server port (default: 8080)
 -r Play media by rating
 -s Start server
--u Update meta data and previews
--U Force update meta data and previews (overwrite existing)
 ```
 
 ## Keyboard shortcuts
