@@ -32,7 +32,7 @@ vidg [-h][-p <port>][-r <min-rating>][-s] <input>
 
 ## Requirements
 
-- Node.js (6.0+)
+- Node.js 14
 
   ```
   apt-get install npm

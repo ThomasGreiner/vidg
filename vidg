@@ -2,7 +2,7 @@
 
 "use strict";
 
-const open = require("open");
+const {execFile} = require("child_process");
 const optimist = require("optimist");
 
 require("./lib/utils");
@@ -53,7 +53,9 @@ if (argv.server || "query" in argv || "rating" in argv) {
   
   if ("query" in argv || "rating" in argv) {
     db.setPlaylist({query: argv.query, rating: argv.rating});
-    result = result.then(() => open(`http://localhost:${argv.port}/playlist`, "vlc"));
+    result = result.then(() => {
+      execFile("vlc", [`http://localhost:${argv.port}/playlist`]);
+    });
   }
 }
 result.catch((err) => console.error(`Bootstrap error: ${err.stack}`));
