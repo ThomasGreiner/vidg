@@ -314,3 +314,20 @@ body[data-rating="5"] #rating-up,
 body[data-rating="-1"] #rating-down {
   opacity: 0.2;
 }
+
+/* Fullscreen */
+
+body:fullscreen aside,
+body:fullscreen #actions {
+  display: none;
+}
+
+body:fullscreen header {
+  position: absolute;
+  opacity: 0.5;
+  background-image: linear-gradient(to bottom, #000, #0000);
+}
+
+body:fullscreen #player {
+  height: 100%;
+}

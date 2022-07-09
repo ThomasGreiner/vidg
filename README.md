@@ -29,6 +29,8 @@ vidg [-h][-p <port>][-r <min-rating>][-s] <input>
 - **up:** increase rating of video
 - **down:** decrease rating of video
 - **enter:** open video in video player
+- **n:** play next video (only while in fullscreen)
+- **p:** play previous video (only while in fullscreen)
 
 ## Requirements
 

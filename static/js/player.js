@@ -24,10 +24,10 @@ export let keyMap = {
   },
   "Enter": () => {
     if (player.paused) {
-      player.webkitRequestFullscreen();
+      document.body.requestFullscreen();
       player.play();
     } else {
-      document.webkitExitFullscreen();
+      document.exitFullscreen();
       api.get("/file");
     }
   },
@@ -48,6 +48,20 @@ export let keyMap = {
   "ArrowUp": async () => {
     await api.patch("/file/rating?dir=up");
     await api.get("/file");
+  },
+  "n": async () => {
+    if (!document.fullscreenElement)
+      return
+    
+    await api.get("/file?dir=next");
+    player.play();
+  },
+  "p": async () => {
+    if (!document.fullscreenElement)
+      return;
+    
+    await api.get("/file?dir=prev");
+    player.play();
   },
   " ": () => {
     if (player.paused) {
