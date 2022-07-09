@@ -35,6 +35,10 @@
       - duration
       - size
     - **number** [rating]
+    - **string** [ratingMode]
+      - equal
+      - max
+      - min
     - **string** [text]
   - **Object[]** [sort=[rating:asc,size:desc]]
     - **string** key
