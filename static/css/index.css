@@ -317,15 +317,30 @@ body[data-rating="-1"] #rating-down {
 
 /* Fullscreen */
 
-body:fullscreen aside,
+body:fullscreen #primary,
+body:fullscreen #meta > div:not(#path),
+body:fullscreen #colors,
 body:fullscreen #actions {
   display: none;
 }
 
+body:fullscreen #secondary {
+  position: absolute;
+  right: 0;
+}
+
+body:fullscreen #meta {
+  border: none;
+  color: #888;
+}
+
 body:fullscreen header {
   position: absolute;
+  background-image: linear-gradient(to bottom, #0008, #0000);
+}
+
+body:fullscreen #chart-status {
   opacity: 0.5;
-  background-image: linear-gradient(to bottom, #000, #0000);
 }
 
 body:fullscreen #player {
