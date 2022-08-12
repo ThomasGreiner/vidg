@@ -1,20 +1,19 @@
 {
+  "name": "vidg",
   "private": true,
+  "main": "app/index.html",
+  "type": "module",
   "scripts": {
-    "lint": "eslint lib/**/*.js scripts/**/*.js static/**/*.js test/**/*.js vidg",
-    "test": "node test"
+    "lint": "eslint app/js/**/*.js scripts/**/*.js",
+    "postinstall": "cd node_modules/nw/nwjs/lib/ && mv libffmpeg.so libffmpeg.so.bak && wget https://github.com/nwjs-ffmpeg-prebuilt/nwjs-ffmpeg-prebuilt/releases/download/0.60.0/0.60.0-linux-x64.zip && unzip 0.60.0-linux-x64.zip && rm 0.60.0-linux-x64.zip",
+    "start": "nw --"
   },
   "dependencies": {
-    "canvas": "^2.4.1",
-    "colors": "^1.3.2",
-    "optimist": "^0.6.1",
-    "sqlite3": "^4.0.9",
-    "trash": "^3.4.1"
+    "nw": "^0.60.0-sdk",
+    "sqlite3": "^5.0.2",
+    "trash": "^3.4.2"
   },
   "devDependencies": {
-    "chai": "^4.2.0",
-    "eslint": "^7.16.0",
-    "mocha": "^5.2.0",
-    "require-inject": "^1.4.3"
+    "eslint": "^7.16.0"
   }
 }

@@ -6,26 +6,18 @@ vidg - the hot-or-not for stored videos
 ## What it does
 
 1. Creates index and prepares preview images of all videos in file `.vidg.sqlite`
-2. Creates local server and launches browser
-3. Let's you rate videos from -1 (trash) to 5 (keep)
+2. Let's you rate videos from -1 (trash) to 5 (keep)
 
-## Starting server
+## Usage
 
-```
-vidg [-h][-p <port>][-r <min-rating>][-s] <input>
-
--h Show usage
--p Server port (default: 8080)
--r Play media by rating
--s Start server
+```sh
+npm start <path to directory>
 ```
 
 ## Keyboard shortcuts
 
 - **left:** go to previous video
 - **right:** go to next video
-- **CTRL + left:** go to previous unrated video
-- **CTRL + right:** go to next unrated video
 - **up:** increase rating of video
 - **down:** decrease rating of video
 - **enter:** open video in video player
@@ -34,7 +26,7 @@ vidg [-h][-p <port>][-r <min-rating>][-s] <input>
 
 ## Requirements
 
-- Node.js 14
+- Node.js 16
 
   ```
   apt-get install npm
@@ -51,12 +43,6 @@ vidg [-h][-p <port>][-r <min-rating>][-s] <input>
   apt-get install ffmpeg
   ```
 
-- node-canvas:
-
-  ```
-  apt-get install libcairo2-dev libjpeg8-dev libpango1.0-dev libgif-dev
-  ```
-
 ### Optional
 
 - Inspect database on the command line using SQLite3
@@ -64,10 +50,11 @@ vidg [-h][-p <port>][-r <min-rating>][-s] <input>
   ```
   apt-get install sqlite3
   ```
+- Debug application
 
-## Tests
-
-Run tests via `npm test` or `node test`.
+  ```
+  npm install nw@0.60.0-sdk
+  ```
 
 ## Scripts
 
